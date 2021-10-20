@@ -1,12 +1,14 @@
 #pragma once
+
 #include "TRollover.h"
 
 class TTripwire :
-	public TRollover
-{
+        public TRollover {
 public:
-	TTripwire(TPinballTable* table, int groupIndex);
-	~TTripwire() override = default;
-	void Collision(TBall* ball, vector_type* nextPosition, vector_type* direction, float coef,
-	               TEdgeSegment* edge) override;
+    TTripwire(TPinballTable *table, int groupIndex);
+
+    ~TTripwire() override = default;
+
+    void Collision(TBall *ball, vector_type *nextPosition, vector_type *direction, float coef,
+                   TEdgeSegment *edge) override;
 };

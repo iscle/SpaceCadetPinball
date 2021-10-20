@@ -1,7 +1,6 @@
 #pragma once
 
-class EmbeddedData
-{
+class EmbeddedData {
 public:
-	static const unsigned char PB_MSGFT_bin[];
+    static const unsigned char PB_MSGFT_bin[];
 };

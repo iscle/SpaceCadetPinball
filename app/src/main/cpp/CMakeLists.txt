@@ -124,6 +124,8 @@ set(SOURCE_FILES
         SpaceCadetPinball/winmain.h
         SpaceCadetPinball/zdrv.cpp
         SpaceCadetPinball/zdrv.h
+        android_utils.cpp
+        android_utils.h
         )
 
 add_library(spacecadetpinball SHARED ${SOURCE_FILES})

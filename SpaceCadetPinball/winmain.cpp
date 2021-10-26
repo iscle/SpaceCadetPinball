@@ -12,7 +12,6 @@
 
 SDL_Window* winmain::MainWindow = nullptr;
 SDL_Renderer* winmain::Renderer = nullptr;
-ImGuiIO* winmain::ImIO = nullptr;
 
 int winmain::return_value = 0;
 bool winmain::bQuit = false;
@@ -57,7 +56,6 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not initialize SDL2", SDL_GetError(), nullptr);
 		return 1;
 	}
-	BasePath = SDL_GetBasePath();
 
 	pinball::quickFlag = strstr(lpCmdLine, "-quick") != nullptr;
 	DatFileName = options::get_string("Pinball Data", pinball::get_rc_string(168, 0));
@@ -101,21 +99,6 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	}
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-
-	// ImGui init
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiSDL::Initialize(renderer, 0, 0);
-	ImGui::StyleColorsDark();
-	ImGuiIO& io = ImGui::GetIO();
-	ImIO = &io;
-	// ImGui_ImplSDL2_Init is private, we are not actually using ImGui OpenGl backend
-	ImGui_ImplSDL2_InitForOpenGL(window, nullptr);
-
-	auto prefPath = SDL_GetPrefPath(nullptr, "SpaceCadetPinball");
-	auto iniPath = std::string(prefPath) + "imgui_pb.ini";
-	io.IniFilename = iniPath.c_str();
-	SDL_free(prefPath);
 
 	// PB init from message handler
 	{
@@ -248,15 +231,8 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 
 			if (UpdateToFrameCounter >= UpdateToFrameRatio)
 			{
-				ImGui_ImplSDL2_NewFrame();
-				ImGui::NewFrame();
-				RenderUi();
-
 				SDL_RenderClear(renderer);
 				render::PresentVScreen();
-
-				ImGui::Render();
-				ImGuiSDL::Render(ImGui::GetDrawData());
 
 				SDL_RenderPresent(renderer);
 				frameCounter++;
@@ -298,309 +274,15 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	midi::music_shutdown();
 	pb::uninit();
 	Sound::Close();
-	ImGuiSDL::Deinitialize();
-	ImGui_ImplSDL2_Shutdown();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	ImGui::DestroyContext();
 	SDL_Quit();
 
 	return return_value;
 }
 
-void winmain::RenderUi()
-{
-	// A minimal window with a button to prevent menu lockout.
-	if (!Options.ShowMenu)
-	{
-		ImGui::SetNextWindowPos(ImVec2{});
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{10, 0});
-		if (ImGui::Begin("main", nullptr,
-		                 ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground |
-		                 ImGuiWindowFlags_AlwaysAutoResize |
-		                 ImGuiWindowFlags_NoMove))
-		{
-			ImGui::PushID(1);
-			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{});
-			if (ImGui::Button("Menu"))
-			{
-				options::toggle(Menu1::Show_Menu);
-			}
-			ImGui::PopStyleColor(1);
-			ImGui::PopID();
-		}
-		ImGui::End();
-		ImGui::PopStyleVar();
-		return;
-	}
-
-	// No demo window in release to save space
-#ifndef NDEBUG
-	if (ShowImGuiDemo)
-		ImGui::ShowDemoWindow(&ShowImGuiDemo);
-#endif
-
-	if (ImGui::BeginMainMenuBar())
-	{
-		int currentMenuHeight = static_cast<int>(ImGui::GetWindowSize().y);
-		if (MainMenuHeight != currentMenuHeight)
-		{
-			// Get the height of the main menu bar and update screen coordinates
-			MainMenuHeight = currentMenuHeight;
-			fullscrn::window_size_changed();
-		}
-
-		if (ImGui::BeginMenu("Game"))
-		{
-			if (ImGui::MenuItem("New Game", "F2"))
-			{
-				new_game();
-			}
-			if (ImGui::MenuItem("Launch Ball", nullptr, false, LaunchBallEnabled))
-			{
-				end_pause();
-				pb::launch_ball();
-			}
-			if (ImGui::MenuItem("Pause/ Resume Game", "F3"))
-			{
-				pause();
-			}
-			ImGui::Separator();
-
-			if (ImGui::MenuItem("High Scores...", nullptr, false, HighScoresEnabled))
-			{
-				if (!single_step)
-					pause();
-				pb::high_scores();
-			}
-			if (ImGui::MenuItem("Demo", nullptr, DemoActive))
-			{
-				end_pause();
-				pb::toggle_demo();
-			}
-			if (ImGui::MenuItem("Exit"))
-			{
-				SDL_Event event{SDL_QUIT};
-				SDL_PushEvent(&event);
-			}
-			ImGui::EndMenu();
-		}
-
-		if (ImGui::BeginMenu("Options"))
-		{
-			if (ImGui::MenuItem("Show Menu", "F9", Options.ShowMenu))
-			{
-				options::toggle(Menu1::Show_Menu);
-			}
-			if (ImGui::MenuItem("Full Screen", "F4", Options.FullScreen))
-			{
-				options::toggle(Menu1::Full_Screen);
-			}
-			if (ImGui::BeginMenu("Select Players"))
-			{
-				if (ImGui::MenuItem("1 Player", nullptr, Options.Players == 1))
-				{
-					options::toggle(Menu1::OnePlayer);
-					new_game();
-				}
-				if (ImGui::MenuItem("2 Players", nullptr, Options.Players == 2))
-				{
-					options::toggle(Menu1::TwoPlayers);
-					new_game();
-				}
-				if (ImGui::MenuItem("3 Players", nullptr, Options.Players == 3))
-				{
-					options::toggle(Menu1::ThreePlayers);
-					new_game();
-				}
-				if (ImGui::MenuItem("4 Players", nullptr, Options.Players == 4))
-				{
-					options::toggle(Menu1::FourPlayers);
-					new_game();
-				}
-				ImGui::EndMenu();
-			}
-			ImGui::Separator();
-
-			if (ImGui::MenuItem("Sound", "F5", Options.Sounds))
-			{
-				options::toggle(Menu1::Sounds);
-			}
-			if (ImGui::MenuItem("Music", "F6", Options.Music))
-			{
-				options::toggle(Menu1::Music);
-			}
-			ImGui::TextUnformatted("Sound Channels");
-			if (ImGui::SliderInt("##Sound Channels", &Options.SoundChannels, options::MinSoundChannels,
-			                     options::MaxSoundChannels, "%d", ImGuiSliderFlags_AlwaysClamp))
-			{
-				Options.SoundChannels = std::min(options::MaxSoundChannels,
-				                                 std::max(options::MinSoundChannels, Options.SoundChannels));
-				Sound::SetChannels(Options.SoundChannels);
-			}
-			ImGui::Separator();
-
-			if (ImGui::MenuItem("Player Controls...", "F8"))
-			{
-				if (!single_step)
-					pause();
-				options::ShowControlDialog();
-			}
-			if (ImGui::BeginMenu("Table Resolution"))
-			{
-				char buffer[20]{};
-				auto maxResText = pinball::get_rc_string(fullscrn::GetMaxResolution() + 2030, 0);
-				if (ImGui::MenuItem(maxResText, nullptr, Options.Resolution == -1))
-				{
-					options::toggle(Menu1::MaximumResolution);
-				}
-				for (auto i = 0; i <= fullscrn::GetMaxResolution(); i++)
-				{
-					auto& res = fullscrn::resolution_array[i];
-					snprintf(buffer, sizeof buffer - 1, "%d x %d", res.ScreenWidth, res.ScreenHeight);
-					if (ImGui::MenuItem(buffer, nullptr, Options.Resolution == i))
-					{
-						options::toggle(static_cast<Menu1>(static_cast<int>(Menu1::R640x480) + i));
-					}
-				}
-				ImGui::EndMenu();
-			}
-			if (ImGui::BeginMenu("Graphics"))
-			{
-				if (ImGui::MenuItem("Uniform Scaling", nullptr, Options.UniformScaling))
-				{
-					options::toggle(Menu1::WindowUniformScale);
-				}
-				if (ImGui::MenuItem("Linear Filtering", nullptr, Options.LinearFiltering))
-				{
-					options::toggle(Menu1::WindowLinearFilter);
-				}
-				ImGui::DragFloat("UI Scale", &ImIO->FontGlobalScale, 0.005f, 0.8f, 5,
-				                 "%.2f", ImGuiSliderFlags_AlwaysClamp);
-				ImGui::Separator();
-
-				char buffer[80]{};
-				auto changed = false;
-				if (ImGui::MenuItem("Set Default UPS/FPS"))
-				{
-					changed = true;
-					Options.UpdatesPerSecond = options::DefUps;
-					Options.FramesPerSecond = options::DefFps;
-				}
-				if (ImGui::SliderInt("UPS", &Options.UpdatesPerSecond, options::MinUps, options::MaxUps, "%d",
-				                     ImGuiSliderFlags_AlwaysClamp))
-				{
-					changed = true;
-					Options.FramesPerSecond = std::min(Options.UpdatesPerSecond, Options.FramesPerSecond);
-				}
-				if (ImGui::SliderInt("FPS", &Options.FramesPerSecond, options::MinFps, options::MaxFps, "%d",
-				                     ImGuiSliderFlags_AlwaysClamp))
-				{
-					changed = true;
-					Options.UpdatesPerSecond = std::max(Options.UpdatesPerSecond, Options.FramesPerSecond);
-				}
-				snprintf(buffer, sizeof buffer - 1, "Uncapped UPS (FPS ratio %02.02f)", UpdateToFrameRatio);
-				if (ImGui::MenuItem(buffer, nullptr, Options.UncappedUpdatesPerSecond))
-				{
-					Options.UncappedUpdatesPerSecond ^= true;
-				}
-
-				if (changed)
-				{
-					UpdateFrameRate();
-				}
-
-				ImGui::EndMenu();
-			}
-			ImGui::EndMenu();
-		}
-
-		if (ImGui::BeginMenu("Help"))
-		{
-#ifndef NDEBUG
-			if (ImGui::MenuItem("ImGui Demo", nullptr, ShowImGuiDemo))
-			{
-				ShowImGuiDemo ^= true;
-			}
-#endif
-			if (ImGui::MenuItem("Sprite Viewer", nullptr, ShowSpriteViewer))
-			{
-				if (!ShowSpriteViewer && !single_step)
-					pause();
-				ShowSpriteViewer ^= true;
-			}
-			if (ImGui::BeginMenu("Cheats"))
-			{
-				if (ImGui::MenuItem("hidden test", nullptr, pb::cheat_mode))
-					pb::PushCheat("hidden test");
-				if (ImGui::MenuItem("1max"))
-					pb::PushCheat("1max");
-				if (ImGui::MenuItem("bmax", nullptr, control::table_unlimited_balls))
-					pb::PushCheat("bmax");
-				if (ImGui::MenuItem("gmax"))
-					pb::PushCheat("gmax");
-				if (ImGui::MenuItem("rmax"))
-					pb::PushCheat("rmax");
-				if (pb::FullTiltMode && ImGui::MenuItem("quote"))
-					pb::PushCheat("quote");
-
-				ImGui::EndMenu();
-			}
-			ImGui::Separator();
-
-			if (ImGui::MenuItem("About Pinball"))
-			{
-				if (!single_step)
-					pause();
-				ShowAboutDialog = true;
-			}
-			ImGui::EndMenu();
-		}
-		if (DispFrameRate && !FpsDetails.empty())
-			if (ImGui::BeginMenu(FpsDetails.c_str()))
-				ImGui::EndMenu();
-		ImGui::EndMainMenuBar();
-	}
-
-	a_dialog();
-	high_score::RenderHighScoreDialog();
-	if (ShowSpriteViewer)
-		render::SpriteViewer(&ShowSpriteViewer);
-	options::RenderControlDialog();
-}
-
 int winmain::event_handler(const SDL_Event* event)
 {
-	ImGui_ImplSDL2_ProcessEvent(event);
-
-	if (ImIO->WantCaptureMouse && !options::WaitingForInput())
-	{
-		if (mouse_down)
-		{
-			mouse_down = 0;
-			SDL_SetWindowGrab(MainWindow, SDL_FALSE);
-		}
-		switch (event->type)
-		{
-		case SDL_MOUSEMOTION:
-		case SDL_MOUSEBUTTONDOWN:
-		case SDL_MOUSEBUTTONUP:
-		case SDL_MOUSEWHEEL:
-			return 1;
-		default: ;
-		}
-	}
-	if (ImIO->WantCaptureKeyboard)
-	{
-		switch (event->type)
-		{
-		case SDL_KEYDOWN:
-		case SDL_KEYUP:
-			return 1;
-		default: ;
-		}
-	}
-
 	switch (event->type)
 	{
 	case SDL_QUIT:
@@ -815,40 +497,6 @@ void winmain::memalloc_failure()
 	char* text = pinball::get_rc_string(179, 0);
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, caption, text, MainWindow);
 	std::exit(1);
-}
-
-void winmain::a_dialog()
-{
-	if (ShowAboutDialog == true)
-	{
-		ShowAboutDialog = false;
-		ImGui::OpenPopup("About");
-	}
-
-	bool unused_open = true;
-	if (ImGui::BeginPopupModal("About", &unused_open, ImGuiWindowFlags_AlwaysAutoResize))
-	{
-		ImGui::TextUnformatted("3D Pinball for Windows - Space Cadet");
-		ImGui::TextUnformatted("Original game by Cinematronics, Microsoft");
-		ImGui::Separator();
-
-		ImGui::TextUnformatted("Decompiled -> Ported to SDL");
-		ImGui::TextUnformatted("Version 2.0");
-		if (ImGui::SmallButton("Project home: https://github.com/k4zmu2a/SpaceCadetPinball"))
-		{
-#if SDL_VERSION_ATLEAST(2, 0, 14)
-			// Relatively new feature, skip with older SDL
-			SDL_OpenURL("https://github.com/k4zmu2a/SpaceCadetPinball");
-#endif
-		}
-		ImGui::Separator();
-
-		if (ImGui::Button("Ok"))
-		{
-			ImGui::CloseCurrentPopup();
-		}
-		ImGui::EndPopup();
-	}
 }
 
 void winmain::end_pause()

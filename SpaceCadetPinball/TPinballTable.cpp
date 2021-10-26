@@ -152,7 +152,7 @@ TPinballTable::TPinballTable(): TPinballComponent(nullptr, -1, false)
 				new THole(this, groupIndex);
 				break;
 			case 1023:
-				new TDemo(this, groupIndex);
+				// Removed demo code
 				break;
 			case 1024:
 				new TTripwire(this, groupIndex);

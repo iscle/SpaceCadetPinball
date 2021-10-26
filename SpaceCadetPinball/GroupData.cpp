@@ -289,10 +289,8 @@ void DatFile::Finalize()
 		assertm(groupIndex < 0, "DatFile: pbmsg_ft is already in .dat");
 
 		// Load 3DPB font into dat to simplify pipeline
-		auto rcData = reinterpret_cast<MsgFont*>(ImFontAtlas::DecompressCompressedBase85Data(
-			EmbeddedData::PB_MSGFT_bin_compressed_data_base85));
+		auto rcData = reinterpret_cast<const MsgFont*>(EmbeddedData::PB_MSGFT_bin);
 		AddMsgFont(rcData, "pbmsg_ft");
-		IM_FREE(rcData);
 
 		// PINBALL2.MID is an alternative font provided in 3DPB data
 		/*auto file = pinball::make_path_name("PINBALL2.MID");
@@ -313,13 +311,13 @@ void DatFile::Finalize()
 	}
 }
 
-void DatFile::AddMsgFont(MsgFont* font, const std::string& fontName)
+void DatFile::AddMsgFont(const MsgFont* font, const std::string& fontName)
 {
 	auto groupId = Groups.back()->GroupId + 1;
-	auto ptrToData = reinterpret_cast<char*>(font->Data);
+	auto ptrToData = reinterpret_cast<const char*>(font->Data);
 	for (auto charInd = 32; charInd < 128; charInd++, groupId++)
 	{
-		auto curChar = reinterpret_cast<MsgFontChar*>(ptrToData);
+		auto curChar = reinterpret_cast<const MsgFontChar*>(ptrToData);
 		assertm(curChar->Width == font->CharWidths[charInd], "Score: mismatched font width");
 		ptrToData += curChar->Width * font->Height + 1;
 

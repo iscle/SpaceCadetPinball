@@ -28,21 +28,21 @@ const ControlRef options::Controls[6]
 
 void options::init()
 {
-	auto imContext = ImGui::GetCurrentContext();
-	ImGuiSettingsHandler ini_handler;
-	ini_handler.TypeName = "Pinball";
-	ini_handler.TypeHash = ImHashStr(ini_handler.TypeName);
-	ini_handler.ReadOpenFn = MyUserData_ReadOpen;
-	ini_handler.ReadLineFn = MyUserData_ReadLine;
-	ini_handler.WriteAllFn = MyUserData_WriteAll;
-	imContext->SettingsHandlers.push_back(ini_handler);
-
-	// Settings are loaded from disk on the first frame
-	if (!imContext->SettingsLoaded)
-	{
-		ImGui::NewFrame();
-		ImGui::EndFrame();
-	}
+//	auto imContext = ImGui::GetCurrentContext();
+//	ImGuiSettingsHandler ini_handler;
+//	ini_handler.TypeName = "Pinball";
+//	ini_handler.TypeHash = ImHashStr(ini_handler.TypeName);
+//	ini_handler.ReadOpenFn = MyUserData_ReadOpen;
+//	ini_handler.ReadLineFn = MyUserData_ReadLine;
+//	ini_handler.WriteAllFn = MyUserData_WriteAll;
+//	imContext->SettingsHandlers.push_back(ini_handler);
+//
+//	// Settings are loaded from disk on the first frame
+//	if (!imContext->SettingsLoaded)
+//	{
+//		ImGui::NewFrame();
+//		ImGui::EndFrame();
+//	}
 
 	Options.Key = Options.KeyDft =
 	{
@@ -89,7 +89,6 @@ void options::init()
 	Options.FullScreen = get_int("FullScreen", false);
 	Options.Players = get_int("Players", 1);
 	Options.UniformScaling = get_int("Uniform scaling", true);
-	ImGui::GetIO().FontGlobalScale = get_float("UI Scale", 1.0f);
 	Options.Resolution = get_int("Screen Resolution", -1);
 	Options.LinearFiltering = get_int("Linear Filtering", true);
 	Options.FramesPerSecond = std::min(MaxFps, std::max(MinUps, get_int("Frames Per Second", DefFps)));
@@ -123,7 +122,6 @@ void options::uninit()
 	set_int("Players", Options.Players);
 	set_int("Screen Resolution", Options.Resolution);
 	set_int("Uniform scaling", Options.UniformScaling);
-	set_float("UI Scale", ImGui::GetIO().FontGlobalScale);
 	set_int("Linear Filtering", Options.LinearFiltering);
 	set_int("Frames Per Second", Options.FramesPerSecond);
 	set_int("Updates Per Second", Options.UpdatesPerSecond);
@@ -283,154 +281,154 @@ void options::ShowControlDialog()
 
 void options::RenderControlDialog()
 {
-	static const char* mouseButtons[]
-	{
-		nullptr,
-		"Mouse Left",
-		"Mouse Middle",
-		"Mouse Right",
-		"Mouse X1",
-		"Mouse X2",
-	};
-
-	if (!ShowDialog)
-		return;
-
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2{550, 450});
-	if (ImGui::Begin("3D Pinball: Player Controls", &ShowDialog))
-	{
-		ImGui::TextUnformatted("Instructions");
-		ImGui::Separator();
-
-		ImGui::TextWrapped(
-			"To change game controls, click the control button, press the new key, and then choose OK.");
-		ImGui::TextWrapped(
-			"To restore 3D Pinball to its original settings, choose Default, and then choose OK.");
-		ImGui::Spacing();
-
-		ImGui::TextUnformatted("Control Options");
-
-		ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2{5, 10});
-		if (ImGui::BeginTable("Controls", 4, ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
-		{
-			ImGui::TableSetupColumn("Control");
-			ImGui::TableSetupColumn("Binding 1");
-			ImGui::TableSetupColumn("Binding 2");
-			ImGui::TableSetupColumn("Binding 3");
-			ImGui::TableHeadersRow();
-
-			int index = 0;
-			for (auto& row : Controls)
-			{
-				ImGui::TableNextColumn();
-				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{0.5, 0, 0, 1});
-				if (ImGui::Button(row.Name))
-				{
-					for (auto i = 0u; i <= 2; i++)
-						row.Option[i] = {};
-				}
-				ImGui::PopStyleColor(1);
-
-				for (auto i = 0u; i <= 2; i++)
-				{
-					auto& ctrl = row.Option[i];
-					ImGui::TableNextColumn();
-					if (ControlWaitingForInput == &ctrl)
-					{
-						ImGui::Button("Press the key", ImVec2(-1, 0));
-					}
-					else
-					{
-						std::string tmp;
-						const char* keyName;
-						switch (ctrl.Type)
-						{
-						case InputTypes::Keyboard:
-							keyName = SDL_GetKeyName(ctrl.Value);
-							break;
-						case InputTypes::Mouse:
-							if (ctrl.Value >= SDL_BUTTON_LEFT && ctrl.Value <= SDL_BUTTON_X2)
-								keyName = mouseButtons[ctrl.Value];
-							else
-								keyName = (tmp += "Mouse " + std::to_string(ctrl.Value)).c_str();
-							break;
-						case InputTypes::GameController:
-							keyName = SDL_GameControllerGetStringForButton(
-								static_cast<SDL_GameControllerButton>(ctrl.Value));
-							break;
-						case InputTypes::None:
-						default:
-							keyName = "Unused";
-						}
-						if (!keyName || !keyName[0])
-							keyName = "Unknown key";
-						if (ImGui::Button((std::string{keyName} + "##" + std::to_string(index++)).c_str(),
-						                  ImVec2(-1, 0)))
-						{
-							ControlWaitingForInput = &ctrl;
-						}
-					}
-				}
-			}
-			ImGui::EndTable();
-		}
-		ImGui::PopStyleVar();
-		ImGui::Spacing();
-
-		if (ImGui::Button("OK"))
-		{
-			Options.Key = RebindControls;
-			ShowDialog = false;
-		}
-
-		ImGui::SameLine();
-		if (ImGui::Button("Cancel"))
-		{
-			ShowDialog = false;
-		}
-
-		ImGui::SameLine();
-		if (ImGui::Button("Default"))
-		{
-			RebindControls = Options.KeyDft;
-			ControlWaitingForInput = nullptr;
-		}
-	}
-	ImGui::End();
-	ImGui::PopStyleVar();
-
-	if (!ShowDialog)
-		ControlWaitingForInput = nullptr;
+//	static const char* mouseButtons[]
+//	{
+//		nullptr,
+//		"Mouse Left",
+//		"Mouse Middle",
+//		"Mouse Right",
+//		"Mouse X1",
+//		"Mouse X2",
+//	};
+//
+//	if (!ShowDialog)
+//		return;
+//
+//	ImGui::PushStyleVar(ImGuiStyleVar_WindowMinSize, ImVec2{550, 450});
+//	if (ImGui::Begin("3D Pinball: Player Controls", &ShowDialog))
+//	{
+//		ImGui::TextUnformatted("Instructions");
+//		ImGui::Separator();
+//
+//		ImGui::TextWrapped(
+//			"To change game controls, click the control button, press the new key, and then choose OK.");
+//		ImGui::TextWrapped(
+//			"To restore 3D Pinball to its original settings, choose Default, and then choose OK.");
+//		ImGui::Spacing();
+//
+//		ImGui::TextUnformatted("Control Options");
+//
+//		ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2{5, 10});
+//		if (ImGui::BeginTable("Controls", 4, ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
+//		{
+//			ImGui::TableSetupColumn("Control");
+//			ImGui::TableSetupColumn("Binding 1");
+//			ImGui::TableSetupColumn("Binding 2");
+//			ImGui::TableSetupColumn("Binding 3");
+//			ImGui::TableHeadersRow();
+//
+//			int index = 0;
+//			for (auto& row : Controls)
+//			{
+//				ImGui::TableNextColumn();
+//				ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{0.5, 0, 0, 1});
+//				if (ImGui::Button(row.Name))
+//				{
+//					for (auto i = 0u; i <= 2; i++)
+//						row.Option[i] = {};
+//				}
+//				ImGui::PopStyleColor(1);
+//
+//				for (auto i = 0u; i <= 2; i++)
+//				{
+//					auto& ctrl = row.Option[i];
+//					ImGui::TableNextColumn();
+//					if (ControlWaitingForInput == &ctrl)
+//					{
+//						ImGui::Button("Press the key", ImVec2(-1, 0));
+//					}
+//					else
+//					{
+//						std::string tmp;
+//						const char* keyName;
+//						switch (ctrl.Type)
+//						{
+//						case InputTypes::Keyboard:
+//							keyName = SDL_GetKeyName(ctrl.Value);
+//							break;
+//						case InputTypes::Mouse:
+//							if (ctrl.Value >= SDL_BUTTON_LEFT && ctrl.Value <= SDL_BUTTON_X2)
+//								keyName = mouseButtons[ctrl.Value];
+//							else
+//								keyName = (tmp += "Mouse " + std::to_string(ctrl.Value)).c_str();
+//							break;
+//						case InputTypes::GameController:
+//							keyName = SDL_GameControllerGetStringForButton(
+//								static_cast<SDL_GameControllerButton>(ctrl.Value));
+//							break;
+//						case InputTypes::None:
+//						default:
+//							keyName = "Unused";
+//						}
+//						if (!keyName || !keyName[0])
+//							keyName = "Unknown key";
+//						if (ImGui::Button((std::string{keyName} + "##" + std::to_string(index++)).c_str(),
+//						                  ImVec2(-1, 0)))
+//						{
+//							ControlWaitingForInput = &ctrl;
+//						}
+//					}
+//				}
+//			}
+//			ImGui::EndTable();
+//		}
+//		ImGui::PopStyleVar();
+//		ImGui::Spacing();
+//
+//		if (ImGui::Button("OK"))
+//		{
+//			Options.Key = RebindControls;
+//			ShowDialog = false;
+//		}
+//
+//		ImGui::SameLine();
+//		if (ImGui::Button("Cancel"))
+//		{
+//			ShowDialog = false;
+//		}
+//
+//		ImGui::SameLine();
+//		if (ImGui::Button("Default"))
+//		{
+//			RebindControls = Options.KeyDft;
+//			ControlWaitingForInput = nullptr;
+//		}
+//	}
+//	ImGui::End();
+//	ImGui::PopStyleVar();
+//
+//	if (!ShowDialog)
+//		ControlWaitingForInput = nullptr;
 }
 
-void options::MyUserData_ReadLine(ImGuiContext* ctx, ImGuiSettingsHandler* handler, void* entry, const char* line)
-{
-	auto& keyValueStore = *static_cast<std::map<std::string, std::string>*>(entry);
-	std::string keyValue = line;
-	auto separatorPos = keyValue.find('=');
-	if (separatorPos != std::string::npos)
-	{
-		auto key = keyValue.substr(0, separatorPos);
-		auto value = keyValue.substr(separatorPos + 1, keyValue.size());
-		keyValueStore[key] = value;
-	}
-}
-
-void* options::MyUserData_ReadOpen(ImGuiContext* ctx, ImGuiSettingsHandler* handler, const char* name)
-{
-	// There is only one custom entry
-	return strcmp(name, "Settings") == 0 ? &settings : nullptr;
-}
-
-void options::MyUserData_WriteAll(ImGuiContext* ctx, ImGuiSettingsHandler* handler, ImGuiTextBuffer* buf)
-{
-	buf->appendf("[%s][%s]\n", handler->TypeName, "Settings");
-	for (const auto& setting : settings)
-	{
-		buf->appendf("%s=%s\n", setting.first.c_str(), setting.second.c_str());
-	}
-	buf->append("\n");
-}
+//void options::MyUserData_ReadLine(ImGuiContext* ctx, ImGuiSettingsHandler* handler, void* entry, const char* line)
+//{
+//	auto& keyValueStore = *static_cast<std::map<std::string, std::string>*>(entry);
+//	std::string keyValue = line;
+//	auto separatorPos = keyValue.find('=');
+//	if (separatorPos != std::string::npos)
+//	{
+//		auto key = keyValue.substr(0, separatorPos);
+//		auto value = keyValue.substr(separatorPos + 1, keyValue.size());
+//		keyValueStore[key] = value;
+//	}
+//}
+//
+//void* options::MyUserData_ReadOpen(ImGuiContext* ctx, ImGuiSettingsHandler* handler, const char* name)
+//{
+//	// There is only one custom entry
+//	return strcmp(name, "Settings") == 0 ? &settings : nullptr;
+//}
+//
+//void options::MyUserData_WriteAll(ImGuiContext* ctx, ImGuiSettingsHandler* handler, ImGuiTextBuffer* buf)
+//{
+//	buf->appendf("[%s][%s]\n", handler->TypeName, "Settings");
+//	for (const auto& setting : settings)
+//	{
+//		buf->appendf("%s=%s\n", setting.first.c_str(), setting.second.c_str());
+//	}
+//	buf->append("\n");
+//}
 
 const std::string& options::GetSetting(const std::string& key, const std::string& value)
 {
@@ -438,8 +436,8 @@ const std::string& options::GetSetting(const std::string& key, const std::string
 	if (setting == settings.end())
 	{
 		settings[key] = value;
-		if (ImGui::GetCurrentContext())
-			ImGui::MarkIniSettingsDirty();
+//		if (ImGui::GetCurrentContext())
+//			ImGui::MarkIniSettingsDirty();
 		return value;
 	}
 	return setting->second;
@@ -448,6 +446,6 @@ const std::string& options::GetSetting(const std::string& key, const std::string
 void options::SetSetting(const std::string& key, const std::string& value)
 {
 	settings[key] = value;
-	if (ImGui::GetCurrentContext())
-		ImGui::MarkIniSettingsDirty();
+//	if (ImGui::GetCurrentContext())
+//		ImGui::MarkIniSettingsDirty();
 }

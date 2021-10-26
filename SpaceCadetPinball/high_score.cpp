@@ -140,92 +140,92 @@ void high_score::show_and_set_high_score_dialog(high_score_struct* table, int sc
 
 void high_score::RenderHighScoreDialog()
 {
-	if (ShowDialog == true)
-	{
-		ShowDialog = false;
-		if (dlg_position == -1)
-		{
-			dlg_enter_name = 0;
-			return;
-		}
-		ImGui::OpenPopup("High Scores");
-	}
-
-	bool unused_open = true;
-	if (ImGui::BeginPopupModal("High Scores", &unused_open, ImGuiWindowFlags_AlwaysAutoResize))
-	{
-		if (ImGui::BeginTable("table1", 3, 0))
-		{
-			char buf[36];
-			ImGui::TableSetupColumn("Rank");
-			ImGui::TableSetupColumn("Name");
-			ImGui::TableSetupColumn("Score");
-			ImGui::TableHeadersRow();
-
-			for (int offset = 0, row = 0; row < 5; row++)
-			{
-				ImGui::TableNextRow();
-				ImGui::TableNextColumn();
-				snprintf(buf, sizeof buf, "%d", row);
-				ImGui::TextUnformatted(buf);
-
-				auto currentRow = &dlg_hst[row + offset];
-				auto score = currentRow->Score;
-				ImGui::TableNextColumn();
-				if (dlg_enter_name == 1 && dlg_position == row)
-				{
-					offset = -1;
-					score = dlg_score;
-					ImGui::PushItemWidth(200);
-					ImGui::InputText("", default_name, IM_ARRAYSIZE(default_name));
-				}
-				else
-				{
-					ImGui::TextUnformatted(currentRow->Name);
-				}
-
-				ImGui::TableNextColumn();
-				score::string_format(score, buf);
-				ImGui::TextUnformatted(buf);
-			}
-			ImGui::EndTable();
-		}
-		ImGui::Separator();
-
-		if (ImGui::Button("Ok"))
-		{
-			if (dlg_enter_name)
-			{
-				default_name[31] = 0;
-				place_new_score_into(dlg_hst, dlg_score, default_name, dlg_position);
-			}
-			ImGui::CloseCurrentPopup();
-		}
-
-		ImGui::SameLine();
-		if (ImGui::Button("Cancel"))
-			ImGui::CloseCurrentPopup();
-
-		ImGui::SameLine();
-		if (ImGui::Button("Clear"))
-			ImGui::OpenPopup("Confirm");
-		if (ImGui::BeginPopupModal("Confirm", nullptr, ImGuiWindowFlags_MenuBar))
-		{
-			ImGui::TextUnformatted(pinball::get_rc_string(40, 0));
-			if (ImGui::Button("OK", ImVec2(120, 0)))
-			{
-				clear_table(dlg_hst);
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::SetItemDefaultFocus();
-			ImGui::SameLine();
-			if (ImGui::Button("Cancel", ImVec2(120, 0)))
-			{
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::EndPopup();
-		}
-
-		ImGui::EndPopup();
-	}
+//	if (ShowDialog == true)
+//	{
+//		ShowDialog = false;
+//		if (dlg_position == -1)
+//		{
+//			dlg_enter_name = 0;
+//			return;
+//		}
+//		ImGui::OpenPopup("High Scores");
+//	}
+//
+//	bool unused_open = true;
+//	if (ImGui::BeginPopupModal("High Scores", &unused_open, ImGuiWindowFlags_AlwaysAutoResize))
+//	{
+//		if (ImGui::BeginTable("table1", 3, 0))
+//		{
+//			char buf[36];
+//			ImGui::TableSetupColumn("Rank");
+//			ImGui::TableSetupColumn("Name");
+//			ImGui::TableSetupColumn("Score");
+//			ImGui::TableHeadersRow();
+//
+//			for (int offset = 0, row = 0; row < 5; row++)
+//			{
+//				ImGui::TableNextRow();
+//				ImGui::TableNextColumn();
+//				snprintf(buf, sizeof buf, "%d", row);
+//				ImGui::TextUnformatted(buf);
+//
+//				auto currentRow = &dlg_hst[row + offset];
+//				auto score = currentRow->Score;
+//				ImGui::TableNextColumn();
+//				if (dlg_enter_name == 1 && dlg_position == row)
+//				{
+//					offset = -1;
+//					score = dlg_score;
+//					ImGui::PushItemWidth(200);
+//					ImGui::InputText("", default_name, IM_ARRAYSIZE(default_name));
+//				}
+//				else
+//				{
+//					ImGui::TextUnformatted(currentRow->Name);
+//				}
+//
+//				ImGui::TableNextColumn();
+//				score::string_format(score, buf);
+//				ImGui::TextUnformatted(buf);
+//			}
+//			ImGui::EndTable();
+//		}
+//		ImGui::Separator();
+//
+//		if (ImGui::Button("Ok"))
+//		{
+//			if (dlg_enter_name)
+//			{
+//				default_name[31] = 0;
+//				place_new_score_into(dlg_hst, dlg_score, default_name, dlg_position);
+//			}
+//			ImGui::CloseCurrentPopup();
+//		}
+//
+//		ImGui::SameLine();
+//		if (ImGui::Button("Cancel"))
+//			ImGui::CloseCurrentPopup();
+//
+//		ImGui::SameLine();
+//		if (ImGui::Button("Clear"))
+//			ImGui::OpenPopup("Confirm");
+//		if (ImGui::BeginPopupModal("Confirm", nullptr, ImGuiWindowFlags_MenuBar))
+//		{
+//			ImGui::TextUnformatted(pinball::get_rc_string(40, 0));
+//			if (ImGui::Button("OK", ImVec2(120, 0)))
+//			{
+//				clear_table(dlg_hst);
+//				ImGui::CloseCurrentPopup();
+//			}
+//			ImGui::SetItemDefaultFocus();
+//			ImGui::SameLine();
+//			if (ImGui::Button("Cancel", ImVec2(120, 0)))
+//			{
+//				ImGui::CloseCurrentPopup();
+//			}
+//			ImGui::EndPopup();
+//		}
+//
+//		ImGui::EndPopup();
+//	}
 }

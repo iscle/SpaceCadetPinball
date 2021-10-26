@@ -42,6 +42,8 @@ constexpr int MIX_INIT_MID_Proxy =
 	MIX_INIT_FLUIDSYNTH;
 #endif
 
+#include "../app/src/main/cpp/SpaceCadetPinballJNI.h"
+
 typedef char* LPSTR;
 typedef const char* LPCSTR;
 

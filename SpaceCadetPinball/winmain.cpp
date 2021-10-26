@@ -53,7 +53,7 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	SDL_SetMainReady();
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not initialize SDL2", SDL_GetError(), nullptr);
+		SpaceCadetPinballJNI::show_error_dialog("Could not initialize SDL2", SDL_GetError());
 		return 1;
 	}
 
@@ -81,7 +81,7 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	MainWindow = window;
 	if (!window)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not create window", SDL_GetError(), nullptr);
+		SpaceCadetPinballJNI::show_error_dialog("Could not create window", SDL_GetError());
 		return 1;
 	}
 
@@ -94,7 +94,7 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	Renderer = renderer;
 	if (!renderer)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not create renderer", SDL_GetError(), window);
+		SpaceCadetPinballJNI::show_error_dialog("Could not create renderer", SDL_GetError());
 		return 1;
 	}
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -111,8 +111,8 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 
 		if (pb::init())
 		{
-			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Could not load game data",
-			                         "The .dat file is missing", window);
+			SpaceCadetPinballJNI::show_error_dialog("Could not load game data",
+			                         "The .dat file is missing");
 			return 1;
 		}
 
@@ -495,7 +495,7 @@ void winmain::memalloc_failure()
 	Sound::Close();
 	char* caption = pinball::get_rc_string(170, 0);
 	char* text = pinball::get_rc_string(179, 0);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, caption, text, MainWindow);
+	SpaceCadetPinballJNI::show_error_dialog(caption, text);
 	std::exit(1);
 }
 

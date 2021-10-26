@@ -62,7 +62,7 @@ int loader::error(int errorCode, int captionCode)
 
 	if (!errorText)
 		errorText = loader_errors[index].Message;
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, errorCaption, errorText, nullptr);
+	SpaceCadetPinballJNI::show_error_dialog(errorCaption, errorText);
 	return -1;
 }
 

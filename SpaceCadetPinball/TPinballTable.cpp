@@ -460,7 +460,7 @@ int TPinballTable::Message(int code, float value)
 			if (PlayerCount <= 1)
 			{
 				char* textboxText;
-				if (Demo->ActiveFlag)
+				if (Demo && Demo->ActiveFlag)
 					textboxText = pinball::get_rc_string(30, 0);
 				else
 					textboxText = pinball::get_rc_string(26, 0);
@@ -504,25 +504,25 @@ int TPinballTable::Message(int code, float value)
 			switch (nextPlayer)
 			{
 			case 0:
-				if (Demo->ActiveFlag)
+				if (Demo && Demo->ActiveFlag)
 					textboxText = pinball::get_rc_string(30, 0);
 				else
 					textboxText = pinball::get_rc_string(26, 0);
 				break;
 			case 1:
-				if (Demo->ActiveFlag)
+				if (Demo && Demo->ActiveFlag)
 					textboxText = pinball::get_rc_string(31, 0);
 				else
 					textboxText = pinball::get_rc_string(27, 0);
 				break;
 			case 2:
-				if (Demo->ActiveFlag)
+				if (Demo && Demo->ActiveFlag)
 					textboxText = pinball::get_rc_string(32, 0);
 				else
 					textboxText = pinball::get_rc_string(28, 0);
 				break;
 			case 3:
-				if (Demo->ActiveFlag)
+				if (Demo && Demo->ActiveFlag)
 					textboxText = pinball::get_rc_string(33, 0);
 				else
 					textboxText = pinball::get_rc_string(29, 0);

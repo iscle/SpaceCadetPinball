@@ -133,7 +133,7 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	if (strstr(lpCmdLine, "-demo"))
 		pb::toggle_demo();
 	else
-		pb::replay_level(0);
+		pb::replay_level(false);
 
 	unsigned dtHistoryCounter = 300u, updateCounter = 0, frameCounter = 0;
 
@@ -521,13 +521,16 @@ void winmain::end_pause()
 void winmain::new_game()
 {
 	end_pause();
-	pb::replay_level(0);
+	pb::replay_level(false);
 }
 
-void winmain::pause()
+void winmain::pause(bool toggle)
 {
-	pb::pause_continue();
-	no_time_loss = true;
+    if (toggle || !single_step)
+    {
+        pb::pause_continue();
+        no_time_loss = true;
+    }
 }
 
 void winmain::Restart()

@@ -103,10 +103,10 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 	// PB init from message handler
 	{
 		options::init();
-		if (!Sound::Init(Options.SoundChannels, Options.Sounds))
+		if (!Sound::Init(Options.SoundChannels, Options.Sounds, Options.SoundVolume))
 			Options.Sounds = false;
 
-		if (!pinball::quickFlag && !midi::music_init())
+		if (!pinball::quickFlag && !midi::music_init(Options.MusicVolume))
 			Options.Music = false;
 
 		if (pb::init())

@@ -9,6 +9,7 @@
 
 constexpr int options::MaxUps, options::MaxFps, options::MinUps, options::MinFps, options::DefUps, options::DefFps;
 constexpr int options::MaxSoundChannels, options::MinSoundChannels, options::DefSoundChannels;
+constexpr int options::MaxVolume, options::MinVolume, options::DefVolume;
 
 optionsStruct options::Options{};
 std::map<std::string, std::string> options::settings{};
@@ -91,13 +92,14 @@ void options::init()
 	Options.UniformScaling = get_int("Uniform scaling", true);
 	Options.Resolution = get_int("Screen Resolution", -1);
 	Options.LinearFiltering = get_int("Linear Filtering", true);
-	Options.FramesPerSecond = std::min(MaxFps, std::max(MinUps, get_int("Frames Per Second", DefFps)));
-	Options.UpdatesPerSecond = std::min(MaxUps, std::max(MinUps, get_int("Updates Per Second", DefUps)));
+	Options.FramesPerSecond = Clamp(get_int("Frames Per Second", DefFps), MinFps, MaxFps);
+	Options.UpdatesPerSecond = Clamp(get_int("Updates Per Second", DefUps), MinUps, MaxUps);
 	Options.UpdatesPerSecond = std::max(Options.UpdatesPerSecond, Options.FramesPerSecond);
 	Options.ShowMenu = get_int("ShowMenu", true);
 	Options.UncappedUpdatesPerSecond = get_int("Uncapped Updates Per Second", false);
-	Options.SoundChannels = get_int("Sound Channels", DefSoundChannels);
-	Options.SoundChannels = std::min(MaxSoundChannels, std::max(MinSoundChannels, Options.SoundChannels));
+	Options.SoundChannels = Clamp(get_int("Sound Channels", DefSoundChannels), MinSoundChannels, MaxSoundChannels);
+	Options.SoundVolume = Clamp(get_int("Sound Volume", DefVolume), MinVolume, MaxVolume);
+	Options.MusicVolume = Clamp(get_int("Music Volume", DefVolume), MinVolume, MaxVolume);
 
 	winmain::UpdateFrameRate();
 
@@ -128,6 +130,8 @@ void options::uninit()
 	set_int("ShowMenu", Options.ShowMenu);
 	set_int("Uncapped Updates Per Second", Options.UncappedUpdatesPerSecond);
 	set_int("Sound Channels", Options.SoundChannels);
+	set_int("Sound Volume", Options.SoundVolume);
+	set_int("Music Volume", Options.MusicVolume);
 }
 
 

@@ -4,7 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/app/src/main/cpp/SDL" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/app/src/main/cpp/SDL_mixer" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/SpaceCadetPinball" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/app/src/main/cpp/SpaceCadetPinball" vcs="" />
+    <mapping directory="$PROJECT_DIR$/test" vcs="" />
   </component>
 </project>

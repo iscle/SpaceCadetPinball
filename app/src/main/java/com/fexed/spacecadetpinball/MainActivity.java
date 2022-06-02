@@ -1,4 +1,4 @@
-package com.dualscreenstudios.spacecadetpinball;
+package com.fexed.spacecadetpinball;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;

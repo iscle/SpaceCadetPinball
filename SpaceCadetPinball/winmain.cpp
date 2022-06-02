@@ -232,6 +232,9 @@ int winmain::WinMain(LPCSTR lpCmdLine)
 			if (UpdateToFrameCounter >= UpdateToFrameRatio)
 			{
 				SDL_RenderClear(renderer);
+                // Alternative clear hack, clear might fail on some systems
+                // Todo: remove original clear, if save for all platforms
+                SDL_RenderFillRect(renderer, nullptr);
 				render::PresentVScreen();
 
 				SDL_RenderPresent(renderer);

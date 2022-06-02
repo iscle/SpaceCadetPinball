@@ -451,17 +451,17 @@ int winmain::event_handler(const SDL_Event* event)
 		pb::InputDown({InputTypes::GameController, event->cbutton.button});
 		switch (event->cbutton.button)
 		{
-		case SDL_CONTROLLER_BUTTON_START:
-			pause();
-			break;
-		case SDL_CONTROLLER_BUTTON_BACK:
-			if (single_step)
-			{
-				SDL_Event event{ SDL_QUIT };
-				SDL_PushEvent(&event);
-			}
-			break;
-		default:;
+            case SDL_CONTROLLER_BUTTON_START:
+                pause();
+                break;
+            case SDL_CONTROLLER_BUTTON_BACK:
+                if (single_step)
+                {
+                    SDL_Event event{ SDL_QUIT };
+                    SDL_PushEvent(&event);
+                }
+                break;
+            default:;
 		}
 		break;
 	case SDL_CONTROLLERBUTTONUP:

@@ -39,8 +39,11 @@ public class MainActivity extends SDLActivity {
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
         Button plunger = findViewById(R.id.plunger);
+        Button t_left = findViewById(R.id.tilt_left);
+        Button t_right = findViewById(R.id.tilt_right);
 
         left.setOnTouchListener((v1, event) -> {
+            v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_Z);
             }
@@ -50,7 +53,19 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
+        t_left.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+            }
+            return false;
+        });
+
         right.setOnTouchListener((v1, event) -> {
+            v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_SLASH);
             }
@@ -60,7 +75,19 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
+        t_right.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PERIOD);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_PERIOD);
+            }
+            return false;
+        });
+
         plunger.setOnTouchListener((v1, event) -> {
+            v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_SPACE);
             }

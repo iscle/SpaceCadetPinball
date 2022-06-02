@@ -3,4 +3,5 @@
     <string name="left">Left</string>
     <string name="right">Right</string>
     <string name="plunger">Plunger</string>
+    <string name="tilt">Tilt</string>
 </resources>

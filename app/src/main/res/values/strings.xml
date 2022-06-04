@@ -6,5 +6,6 @@
     <string name="tilt">Tilt</string>
     <string name="reset">New game</string>
     <string name="highscore">High Score</string>
+    <string name="newhighscore">New High Score: %d! Congratulations!</string>
     <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: Fexed</string>
 </resources>

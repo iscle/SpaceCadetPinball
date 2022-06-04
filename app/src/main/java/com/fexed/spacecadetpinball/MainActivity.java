@@ -1,5 +1,7 @@
 package com.fexed.spacecadetpinball;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import org.libsdl.app.SDLActivity;
@@ -116,6 +119,13 @@ public class MainActivity extends SDLActivity {
             }
             return false;
         });
+
+
+        ImageButton settings = findViewById(R.id.settingsbtn);
+        settings.setOnClickListener(view -> {
+            Intent i = new Intent(this, Settings.class);
+            startActivity(i);
+        });
     }
 
     private void copyAssets(File filesDir) {
@@ -151,6 +161,14 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onBallInPlungerChanged(boolean isBallInPlunger) {
             runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE));
+        }
+
+        @Override
+        public void onHighScorePresented(int score) {
+            int oldscore = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+            if (score > oldscore) {
+                getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putInt("highscore", score).apply();
+            }
         }
     };
 

@@ -60,7 +60,7 @@ int high_score::write(high_score_struct* table)
 		snprintf(Buffer, sizeof Buffer, "%d", position);
 		strcat(Buffer, ".Score");
 		options::set_int(Buffer, tablePtr->Score);
-
+		
 		for (int i = static_cast<int>(strlen(tablePtr->Name)); --i >= 0; checkSum += tablePtr->Name[i])
 		{
 		}

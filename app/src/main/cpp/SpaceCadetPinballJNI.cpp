@@ -29,6 +29,16 @@ void SpaceCadetPinballJNI::setBallInPlunger(bool isInPlunger) {
     env->CallStaticVoidMethod(clazz, mid, isInPlunger);
 }
 
+void SpaceCadetPinballJNI::addHighScore(int score) {
+    JNIEnv *env;
+    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+    jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "addHighScore", "(I)V");
+
+    env->CallStaticVoidMethod(clazz, mid, score);
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,

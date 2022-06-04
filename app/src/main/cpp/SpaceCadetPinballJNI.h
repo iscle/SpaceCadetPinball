@@ -11,6 +11,8 @@ public:
 
     static void setBallInPlunger(bool state);
 
+    static void addHighScore(int score);
+
     enum GAMESTATE {
         RUNNING = 1,
         FINISHED = 2

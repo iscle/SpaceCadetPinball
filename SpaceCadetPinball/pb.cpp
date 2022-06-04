@@ -550,6 +550,7 @@ bool pb::chk_highscore()
 		if (--playerIndex < 0)
 			return false;
 	}
+	SpaceCadetPinballJNI::addHighScore(MainTable->PlayerScores[playerIndex].ScoreStruct->Score);
 	return true;
 }
 

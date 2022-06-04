@@ -8,4 +8,8 @@ public class JNIEntryPoint {
     static void setBallInPlunger(boolean isInPlunger) {
         StateHelper.INSTANCE.setBallInPlunger(isInPlunger);
     }
+
+    static void addHighScore(int score) {
+        StateHelper.INSTANCE.addHighScore(score);
+    }
 }

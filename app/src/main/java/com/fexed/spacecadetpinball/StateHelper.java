@@ -12,6 +12,7 @@ public enum StateHelper {
 
     private int mState;
     private boolean mIsBallInPlunger = false;
+    private int score;
 
     private List<IStateListener> mStateListeners = new ArrayList<>();
 
@@ -45,10 +46,20 @@ public enum StateHelper {
         }
     }
 
+    public void addHighScore(int score) {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onHighScorePresented(score);
+            }
+        }
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
 
         void onBallInPlungerChanged(boolean isBallInPlunger);
+
+        void onHighScorePresented(int score);
     }
 }

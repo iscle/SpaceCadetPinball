@@ -56,6 +56,7 @@ int TPlunger::Message(int code, float value)
 		return 0;
 	case 1015:
 		{
+			SpaceCadetPinballJNI::setBallInPlunger(true);
 			auto ball = PinballTable->BallList.at(0);
 			ball->Message(1024, 0.0);
 			ball->Position.X = PinballTable->PlungerPositionX;

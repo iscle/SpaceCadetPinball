@@ -1811,6 +1811,7 @@ void control::SkillShotGate1Control(int code, TPinballComponent* caller)
 {
 	if (code == 63)
 	{
+		SpaceCadetPinballJNI::setBallInPlunger(false);
 		control_lite200_tag.Component->Message(9, 5.0);
 		if (light_on(&control_lite67_tag))
 		{

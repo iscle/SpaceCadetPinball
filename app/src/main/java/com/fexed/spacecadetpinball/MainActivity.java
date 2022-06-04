@@ -18,8 +18,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
+
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
+
+    private ActivityMainBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +32,23 @@ public class MainActivity extends SDLActivity {
         copyAssets(filesDir);
         initNative(filesDir.getAbsolutePath() + "/");
 
-        View v = getLayoutInflater().inflate(R.layout.activity_main, mLayout, false);
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater(), mLayout, false);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        mLayout.addView(v, layoutParams);
+        mLayout.addView(mBinding.getRoot(), layoutParams);
 
-        v.bringToFront();
+        mBinding.getRoot().bringToFront();
 
+        /*
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
         Button plunger = findViewById(R.id.plunger);
         Button t_left = findViewById(R.id.tilt_left);
         Button t_right = findViewById(R.id.tilt_right);
+        */
 
-        left.setOnTouchListener((v1, event) -> {
+        mBinding.left.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_Z);
@@ -53,7 +59,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        t_left.setOnTouchListener((v1, event) -> {
+        mBinding.tiltLeft.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
@@ -64,7 +70,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        right.setOnTouchListener((v1, event) -> {
+        mBinding.right.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_SLASH);
@@ -75,7 +81,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        t_right.setOnTouchListener((v1, event) -> {
+        mBinding.tiltRight.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PERIOD);
@@ -86,7 +92,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        plunger.setOnTouchListener((v1, event) -> {
+        mBinding.plunger.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_SPACE);
@@ -120,6 +126,30 @@ public class MainActivity extends SDLActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private StateHelper.IStateListener mStateListener = new StateHelper.IStateListener() {
+        @Override
+        public void onStateChanged(int state) {
+
+        }
+
+        @Override
+        public void onBallInPlungerChanged(boolean isBallInPlunger) {
+            runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.GONE));
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        StateHelper.INSTANCE.addListener(mStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        StateHelper.INSTANCE.removeListener(mStateListener);
     }
 
     @Override

@@ -102,6 +102,17 @@ public class MainActivity extends SDLActivity {
             }
             return false;
         });
+
+        mBinding.replay.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_F2);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
+            }
+            return false;
+        });
     }
 
     private void copyAssets(File filesDir) {
@@ -131,12 +142,12 @@ public class MainActivity extends SDLActivity {
     private StateHelper.IStateListener mStateListener = new StateHelper.IStateListener() {
         @Override
         public void onStateChanged(int state) {
-
+            runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
         }
 
         @Override
         public void onBallInPlungerChanged(boolean isBallInPlunger) {
-            runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.GONE));
+            runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE));
         }
     };
 

@@ -10,6 +10,11 @@ public:
     static void notifyGameState(int state);
 
     static void setBallInPlunger(bool state);
+
+    enum GAMESTATE {
+        RUNNING = 1,
+        FINISHED = 2
+    };
 };
 
 #endif // SPACECADETPINBALLJNI_H

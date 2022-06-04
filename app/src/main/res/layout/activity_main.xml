@@ -63,6 +63,19 @@
         android:text="@string/plunger"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/left" />
+
+    <Button
+        android:id="@+id/replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/reset"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/tilt_left"
+        app:layout_constraintEnd_toStartOf="@+id/tilt_right"
+        app:layout_constraintStart_toEndOf="@+id/tilt_left"
+        app:layout_constraintTop_toTopOf="@+id/tilt_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

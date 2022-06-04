@@ -40,14 +40,6 @@ public class MainActivity extends SDLActivity {
 
         mBinding.getRoot().bringToFront();
 
-        /*
-        Button left = findViewById(R.id.left);
-        Button right = findViewById(R.id.right);
-        Button plunger = findViewById(R.id.plunger);
-        Button t_left = findViewById(R.id.tilt_left);
-        Button t_right = findViewById(R.id.tilt_right);
-        */
-
         mBinding.left.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -110,6 +102,17 @@ public class MainActivity extends SDLActivity {
             }
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
+            }
+            return false;
+        });
+
+        mBinding.tiltBottom.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_DPAD_UP);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_DPAD_UP);
             }
             return false;
         });

@@ -14,7 +14,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
         android:text="@string/left"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tilt_left"
         app:layout_constraintEnd_toStartOf="@+id/plunger"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -25,10 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
         android:text="@string/tilt"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/left"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/left"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,10 +38,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
         android:text="@string/tilt"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/left"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/right"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/right" />
@@ -66,7 +64,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/right"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tilt_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/plunger" />
 
@@ -74,10 +72,9 @@
         android:id="@+id/plunger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:text="@string/plunger"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/left" />
@@ -86,11 +83,23 @@
         android:id="@+id/replay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/reset"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/tilt_right"
-        app:layout_constraintStart_toEndOf="@+id/tilt_left"
-        app:layout_constraintTop_toBottomOf="@+id/tilt_bottom" />
+        app:layout_constraintBottom_toBottomOf="@+id/left"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toTopOf="@+id/left" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

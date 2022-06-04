@@ -4,5 +4,5 @@
     <string name="right">Right</string>
     <string name="plunger">Plunger</string>
     <string name="tilt">Tilt</string>
-    <string name="reset">Reset</string>
+    <string name="reset">New game</string>
 </resources>

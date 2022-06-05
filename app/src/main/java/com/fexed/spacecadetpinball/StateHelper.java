@@ -87,6 +87,14 @@ public enum StateHelper {
         }
     }
 
+    public void postBallCount(int count) {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onBallCountUpdated(count);
+            }
+        }
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
@@ -102,5 +110,7 @@ public enum StateHelper {
         void onClearText(int type);
 
         void onScorePosted(int score);
+
+        void onBallCountUpdated(int count);
     }
 }

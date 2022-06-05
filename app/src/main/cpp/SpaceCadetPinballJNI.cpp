@@ -84,6 +84,17 @@ void SpaceCadetPinballJNI::postScore(int score) {
     env->CallStaticVoidMethod(clazz, mid, score);
 }
 
+void SpaceCadetPinballJNI::postBallCount(int count) {
+    JNIEnv *env;
+    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+
+    jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "postBallCount", "(I)V");
+
+    env->CallStaticVoidMethod(clazz, mid, count);
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,

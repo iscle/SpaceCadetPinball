@@ -195,6 +195,12 @@ public class MainActivity extends SDLActivity {
             String str = "" + score;
             runOnUiThread(() -> mBinding.txtscore.setText(str));
         }
+
+        @Override
+        public void onBallCountUpdated(int count) {
+            String str = getString(R.string.balls, count);
+            runOnUiThread(() -> mBinding.ballstxt.setText(str));
+        }
     };
 
     @Override

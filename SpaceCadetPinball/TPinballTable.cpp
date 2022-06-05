@@ -280,6 +280,7 @@ void TPinballTable::ChangeBallCount(int count)
 	else
 	{
 		score::set(ScoreBallcount, MaxBallCount - count + 1);
+		SpaceCadetPinballJNI::postBallCount(MaxBallCount - count + 1);
 		score::update(ScoreBallcount);
 	}
 }

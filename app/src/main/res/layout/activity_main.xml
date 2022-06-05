@@ -90,20 +90,6 @@
         app:layout_constraintStart_toEndOf="@+id/left"
         app:layout_constraintTop_toTopOf="@+id/left" />
 
-    <ImageButton
-        android:id="@+id/settingsbtn"
-        style="@android:style/Widget.DeviceDefault.ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/missiontxt"
         android:layout_width="0dp"
@@ -120,6 +106,21 @@
         tools:text="text box" />
 
     <TextView
+        android:id="@+id/ballstxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtscore"
+        app:layout_constraintStart_toStartOf="@+id/txtscore"
+        app:layout_constraintTop_toBottomOf="@+id/txtscore"
+        tools:text="text box" />
+
+    <TextView
         android:id="@+id/infotxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -131,7 +132,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtscore"
+        app:layout_constraintTop_toBottomOf="@+id/ballstxt"
         tools:text="text box" />
 
     <TextView
@@ -139,15 +140,43 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settingsbtn"
+        app:layout_constraintEnd_toStartOf="@+id/settingsbtn"
+        app:layout_constraintStart_toEndOf="@+id/fakebtn"
+        app:layout_constraintTop_toTopOf="@+id/settingsbtn"
         tools:text="text box" />
+
+    <ImageButton
+        android:id="@+id/settingsbtn"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/fakebtn"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/settings"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

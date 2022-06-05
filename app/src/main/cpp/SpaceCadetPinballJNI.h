@@ -21,6 +21,8 @@ public:
 
     static void postScore(int score);
 
+    static void postBallCount(int count);
+
     enum GAMESTATE {
         RUNNING = 1,
         FINISHED = 2

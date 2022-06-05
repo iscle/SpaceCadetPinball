@@ -28,4 +28,8 @@ public class JNIEntryPoint {
     static void postScore(int score) {
         StateHelper.INSTANCE.postScore(score);
     }
+
+    static void postBallCount(int count) {
+        StateHelper.INSTANCE.postBallCount(count);
+    }
 }

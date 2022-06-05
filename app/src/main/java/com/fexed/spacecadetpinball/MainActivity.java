@@ -180,8 +180,9 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public void onStringPresented(String str, int type) {
-            if (type == 1) runOnUiThread(() -> mBinding.missiontxt.setText(str));
-            else runOnUiThread(() -> mBinding.infotxt.setText(str));
+            final String fstr = str.replace("\n", " ");
+            if (type == 1) runOnUiThread(() -> mBinding.missiontxt.setText(fstr));
+            else runOnUiThread(() -> mBinding.infotxt.setText(fstr));
         }
 
         @Override

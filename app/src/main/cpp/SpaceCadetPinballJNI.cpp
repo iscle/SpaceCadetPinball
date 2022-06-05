@@ -57,15 +57,6 @@ void SpaceCadetPinballJNI::displayText(const char* text) {
     jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;)V");
 
-    int len = strlen(text);
-    jbyteArray bytes = env->NewByteArray(len);
-    env->SetByteArrayRegion(bytes, 0, len, (jbyte*) text);
-    jstring encoding = env->NewStringUTF("utf-8");
-    jclass StringClass = env->FindClass("java/lang/String");
-    //jmethodID StringInitMethod = env->GetMethodID(StringClass, "String", "([BLjava/lang/String;)V");
-
-    //auto str = (jstring) env->NewObject(StringClass, StringInitMethod, bytes, encoding);
-
     jstring str = env->NewStringUTF(text);
 
     env->CallStaticVoidMethod(clazz, mid, str);

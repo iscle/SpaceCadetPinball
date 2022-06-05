@@ -72,6 +72,7 @@ void TTextBox::TimerExpired(int timerId, void* caller)
 
 void TTextBox::Clear()
 {
+    SpaceCadetPinballJNI::clearText();
 	gdrv_bitmap8* bmp = BgBmp;
 	if (bmp)
 		gdrv::copy_bitmap(
@@ -102,6 +103,7 @@ void TTextBox::Clear()
 
 void TTextBox::Display(const char* text, float time)
 {
+	SpaceCadetPinballJNI::displayText(text);
 	if (!text)
 		return;
 

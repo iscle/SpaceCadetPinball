@@ -63,6 +63,22 @@ public enum StateHelper {
         return -1;
     }
 
+    public void printString(String string) {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onStringPresented(string);
+            }
+        }
+    }
+
+    public void clearText() {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onClearText();
+            }
+        }
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
@@ -72,5 +88,9 @@ public enum StateHelper {
         void onHighScorePresented(int score);
 
         int onHighScoreRequested();
+
+        void onStringPresented(String string);
+
+        void onClearText();
     }
 }

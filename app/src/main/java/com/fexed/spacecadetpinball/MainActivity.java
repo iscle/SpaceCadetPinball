@@ -177,6 +177,16 @@ public class MainActivity extends SDLActivity {
         public int onHighScoreRequested() {
             return getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
         }
+
+        @Override
+        public void onStringPresented(String str) {
+            runOnUiThread(() -> mBinding.txtmessage.setText(str));
+        }
+
+        @Override
+        public void onClearText() {
+            //runOnUiThread(() -> mBinding.txtmessage.setText(""));
+        }
     };
 
     @Override

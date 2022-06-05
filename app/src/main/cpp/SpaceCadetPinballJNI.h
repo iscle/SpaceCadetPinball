@@ -15,6 +15,10 @@ public:
 
     static int getHighScore();
 
+    static void displayText(const char* text);
+
+    static void clearText();
+
     enum GAMESTATE {
         RUNNING = 1,
         FINISHED = 2

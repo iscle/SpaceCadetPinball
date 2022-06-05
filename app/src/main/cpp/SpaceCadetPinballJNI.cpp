@@ -49,6 +49,39 @@ int SpaceCadetPinballJNI::getHighScore() {
     return env->CallStaticIntMethod(clazz, mid);
 }
 
+void SpaceCadetPinballJNI::displayText(const char* text) {
+    JNIEnv *env;
+    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+
+    jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;)V");
+
+    int len = strlen(text);
+    jbyteArray bytes = env->NewByteArray(len);
+    env->SetByteArrayRegion(bytes, 0, len, (jbyte*) text);
+    jstring encoding = env->NewStringUTF("utf-8");
+    jclass StringClass = env->FindClass("java/lang/String");
+    //jmethodID StringInitMethod = env->GetMethodID(StringClass, "String", "([BLjava/lang/String;)V");
+
+    //auto str = (jstring) env->NewObject(StringClass, StringInitMethod, bytes, encoding);
+
+    jstring str = env->NewStringUTF(text);
+
+    env->CallStaticVoidMethod(clazz, mid, str);
+}
+
+void SpaceCadetPinballJNI::clearText() {
+    JNIEnv *env;
+    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+
+    jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "clearText", "()V");
+
+    env->CallStaticVoidMethod(clazz, mid);
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,

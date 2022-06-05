@@ -79,6 +79,14 @@ public enum StateHelper {
         }
     }
 
+    public void postScore(int score) {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onScorePosted(score);
+            }
+        }
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
@@ -92,5 +100,7 @@ public enum StateHelper {
         void onStringPresented(String string);
 
         void onClearText();
+
+        void onScorePosted(int score);
     }
 }

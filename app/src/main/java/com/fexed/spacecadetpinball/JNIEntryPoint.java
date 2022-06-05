@@ -24,4 +24,8 @@ public class JNIEntryPoint {
     static void clearText() {
         StateHelper.INSTANCE.clearText();
     }
+
+    static void postScore(int score) {
+        StateHelper.INSTANCE.postScore(score);
+    }
 }

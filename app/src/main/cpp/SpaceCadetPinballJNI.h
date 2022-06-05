@@ -19,6 +19,8 @@ public:
 
     static void clearText();
 
+    static void postScore(int score);
+
     enum GAMESTATE {
         RUNNING = 1,
         FINISHED = 2

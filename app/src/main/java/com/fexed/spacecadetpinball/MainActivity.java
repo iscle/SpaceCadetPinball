@@ -187,6 +187,12 @@ public class MainActivity extends SDLActivity {
         public void onClearText() {
             //runOnUiThread(() -> mBinding.txtmessage.setText(""));
         }
+
+        @Override
+        public void onScorePosted(int score) {
+            String str = "" + score;
+            runOnUiThread(() -> mBinding.txtscore.setText(str));
+        }
     };
 
     @Override

@@ -70,9 +70,11 @@ void TTextBox::TimerExpired(int timerId, void* caller)
 	}
 }
 
-void TTextBox::Clear()
+void TTextBox::Clear(int type)
 {
-    SpaceCadetPinballJNI::clearText();
+	// 1 -> mission txtbx
+	// 2 -> info txtbx
+    SpaceCadetPinballJNI::clearText(type);
 	gdrv_bitmap8* bmp = BgBmp;
 	if (bmp)
 		gdrv::copy_bitmap(
@@ -101,9 +103,11 @@ void TTextBox::Clear()
 	}
 }
 
-void TTextBox::Display(const char* text, float time)
+void TTextBox::Display(const char* text, float time, int type)
 {
-	SpaceCadetPinballJNI::displayText(text);
+	// 1 -> mission txtbx
+	// 2 -> info txtbx
+	SpaceCadetPinballJNI::displayText(text, type);
 	if (!text)
 		return;
 
@@ -123,7 +127,7 @@ void TTextBox::Display(const char* text, float time)
 	else
 	{
 		if (Timer == -1)
-			Clear();
+			Clear(1);
 
 		auto message = new TTextBoxMessage(text, time);
 		if (message)

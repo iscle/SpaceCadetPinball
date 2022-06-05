@@ -174,9 +174,9 @@ void pb::toggle_demo()
 		demo_mode = false;
 		MainTable->Message(1024, 0.0);
 		mode_change(GameModes::GameOver);
-		pinball::MissTextBox->Clear();
+		pinball::MissTextBox->Clear(1);
 		auto text = pinball::get_rc_string(24, 0);
-		pinball::InfoTextBox->Display(text, -1.0);
+		pinball::InfoTextBox->Display(text, -1.0, 2);
 	}
 	else
 	{
@@ -239,7 +239,7 @@ void pb::frame(float dtMilliSec)
 	{
 		if (nudge::nudge_count > 0.5f)
 		{
-			pinball::InfoTextBox->Display(pinball::get_rc_string(25, 0), 2.0);
+			pinball::InfoTextBox->Display(pinball::get_rc_string(25, 0), 2.0, 2);
 		}
 		if (nudge::nudge_count > 1.0f)
 			MainTable->tilt(time_now);
@@ -308,13 +308,13 @@ void pb::window_size(int* width, int* height)
 void pb::pause_continue()
 {
 	winmain::single_step ^= true;
-	pinball::InfoTextBox->Clear();
-	pinball::MissTextBox->Clear();
+	pinball::InfoTextBox->Clear(2);
+	pinball::MissTextBox->Clear(1);
 	if (winmain::single_step)
 	{
 		if (MainTable)
 			MainTable->Message(1008, time_now);
-		pinball::InfoTextBox->Display(pinball::get_rc_string(22, 0), -1.0);
+		pinball::InfoTextBox->Display(pinball::get_rc_string(22, 0), -1.0, 2);
 		midi::music_stop();
 		Sound::Deactivate();
 	}
@@ -336,7 +336,7 @@ void pb::pause_continue()
 				textTime = 5.0;
 				text = pinball::get_rc_string(23, 0);
 			}
-			pinball::InfoTextBox->Display(text, textTime);
+			pinball::InfoTextBox->Display(text, textTime, 2);
 		}
 		if (options::Options.Music && !winmain::single_step)
 			midi::play_pb_theme();
@@ -531,7 +531,7 @@ void pb::high_scores()
 void pb::tilt_no_more()
 {
 	if (MainTable->TiltLockFlag)
-		pinball::InfoTextBox->Clear();
+		pinball::InfoTextBox->Clear(2);
 	MainTable->TiltLockFlag = 0;
 	nudge::nudge_count = -2.0;
 }

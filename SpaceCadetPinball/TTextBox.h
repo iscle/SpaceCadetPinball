@@ -20,8 +20,8 @@ public:
 	TTextBox(TPinballTable* table, int groupIndex);
 	~TTextBox() override;
 	int Message(int code, float value) override;
-	void Clear();
-	void Display(const char* text, float time);
+	void Clear(int type);
+	void Display(const char* text, float time, int type);
 	void Draw();
 
 	static void TimerExpired(int timerId, void* tb);

@@ -15,9 +15,9 @@ public:
 
     static int getHighScore();
 
-    static void displayText(const char* text);
+    static void displayText(const char* text, int type);
 
-    static void clearText();
+    static void clearText(int type);
 
     static void postScore(int score);
 

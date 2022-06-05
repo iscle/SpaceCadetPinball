@@ -49,28 +49,28 @@ int SpaceCadetPinballJNI::getHighScore() {
     return env->CallStaticIntMethod(clazz, mid);
 }
 
-void SpaceCadetPinballJNI::displayText(const char* text) {
+void SpaceCadetPinballJNI::displayText(const char* text, int type) {
     JNIEnv *env;
     g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
 
     jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
-    jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;)V");
+    jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;I)V");
 
     jstring str = env->NewStringUTF(text);
 
-    env->CallStaticVoidMethod(clazz, mid, str);
+    env->CallStaticVoidMethod(clazz, mid, str, type);
 }
 
-void SpaceCadetPinballJNI::clearText() {
+void SpaceCadetPinballJNI::clearText(int type) {
     JNIEnv *env;
     g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
 
     jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
-    jmethodID mid = env->GetStaticMethodID(clazz, "clearText", "()V");
+    jmethodID mid = env->GetStaticMethodID(clazz, "clearText", "(I)V");
 
-    env->CallStaticVoidMethod(clazz, mid);
+    env->CallStaticVoidMethod(clazz, mid, type);
 }
 
 void SpaceCadetPinballJNI::postScore(int score) {

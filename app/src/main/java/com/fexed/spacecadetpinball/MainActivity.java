@@ -179,13 +179,15 @@ public class MainActivity extends SDLActivity {
         }
 
         @Override
-        public void onStringPresented(String str) {
-            runOnUiThread(() -> mBinding.txtmessage.setText(str));
+        public void onStringPresented(String str, int type) {
+            if (type == 1) runOnUiThread(() -> mBinding.missiontxt.setText(str));
+            else runOnUiThread(() -> mBinding.infotxt.setText(str));
         }
 
         @Override
-        public void onClearText() {
-            //runOnUiThread(() -> mBinding.txtmessage.setText(""));
+        public void onClearText(int type) {
+            if (type == 1) runOnUiThread(() -> mBinding.missiontxt.setText(""));
+            else runOnUiThread(() -> mBinding.infotxt.setText(""));
         }
 
         @Override

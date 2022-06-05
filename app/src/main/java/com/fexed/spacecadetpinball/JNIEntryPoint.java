@@ -17,12 +17,12 @@ public class JNIEntryPoint {
         return StateHelper.INSTANCE.getHighScore();
     }
 
-    static void printString(String string) {
-        StateHelper.INSTANCE.printString(string);
+    static void printString(String string, int type) {
+        StateHelper.INSTANCE.printString(string, type);
     }
 
-    static void clearText() {
-        StateHelper.INSTANCE.clearText();
+    static void clearText(int type) {
+        StateHelper.INSTANCE.clearText(type);
     }
 
     static void postScore(int score) {

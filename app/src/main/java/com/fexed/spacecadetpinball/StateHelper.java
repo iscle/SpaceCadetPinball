@@ -63,18 +63,18 @@ public enum StateHelper {
         return -1;
     }
 
-    public void printString(String string) {
+    public void printString(String string, int type) {
         for (IStateListener listener : mStateListeners) {
             if (listener != null) {
-                listener.onStringPresented(string);
+                listener.onStringPresented(string, type);
             }
         }
     }
 
-    public void clearText() {
+    public void clearText(int type) {
         for (IStateListener listener : mStateListeners) {
             if (listener != null) {
-                listener.onClearText();
+                listener.onClearText(type);
             }
         }
     }
@@ -97,9 +97,9 @@ public enum StateHelper {
 
         int onHighScoreRequested();
 
-        void onStringPresented(String string);
+        void onStringPresented(String string, int type);
 
-        void onClearText();
+        void onClearText(int type);
 
         void onScorePosted(int score);
     }

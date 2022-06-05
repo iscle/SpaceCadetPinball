@@ -288,9 +288,9 @@ void TPinballTable::tilt(float time)
 {
 	if (!TiltLockFlag && !BallInSink)
 	{
-		pinball::InfoTextBox->Clear();
-		pinball::MissTextBox->Clear();
-		pinball::InfoTextBox->Display(pinball::get_rc_string(35, 0), -1.0);
+		pinball::InfoTextBox->Clear(2);
+		pinball::MissTextBox->Clear(1);
+		pinball::InfoTextBox->Display(pinball::get_rc_string(35, 0), -1.0, 2);
 		loader::play_sound(SoundIndex3);
 		TiltTimeoutTimer = timer::set(30.0, this, tilt_timeout);
 
@@ -372,7 +372,7 @@ int TPinballTable::Message(int code, float value)
 			rc_text = pinball::get_rc_string(30, 0);
 		else
 			rc_text = pinball::get_rc_string(26, 0);
-		pinball::InfoTextBox->Display(rc_text, -1.0);
+		pinball::InfoTextBox->Display(rc_text, -1.0, 2);
 		if (Demo)
 			Demo->Message(1014, 0.0);
 		break;
@@ -442,8 +442,8 @@ int TPinballTable::Message(int code, float value)
 			ScoreSpecial3Flag = 0;
 			ScoreSpecial2Flag = 0;
 			UnknownP71 = 0;
-			pinball::InfoTextBox->Clear();
-			pinball::MissTextBox->Clear();
+			pinball::InfoTextBox->Clear(2);
+			pinball::MissTextBox->Clear(1);
 			LightGroup->Message(28, 0.2f);
 			auto time = loader::play_sound(SoundIndex1);
 			LightShowTimer = timer::set(time, this, LightShow_timeout);
@@ -461,7 +461,7 @@ int TPinballTable::Message(int code, float value)
 			{
 				char* textboxText;
                 textboxText = pinball::get_rc_string(26, 0);
-				pinball::InfoTextBox->Display(textboxText, -1.0);
+				pinball::InfoTextBox->Display(textboxText, -1.0, 2);
 				break;
 			}
 
@@ -529,7 +529,7 @@ int TPinballTable::Message(int code, float value)
 			}
 
 			if (textboxText != nullptr)
-				pinball::InfoTextBox->Display(textboxText, -1);
+				pinball::InfoTextBox->Display(textboxText, -1, 2);
 			ScoreSpecial3Flag = 0;
 			ScoreSpecial2Flag = 0;
 			UnknownP71 = 0;
@@ -538,8 +538,8 @@ int TPinballTable::Message(int code, float value)
 		break;
 	case 1022:
 		loader::play_sound(SoundIndex2);
-		pinball::MissTextBox->Clear();
-		pinball::InfoTextBox->Display(pinball::get_rc_string(34, 0), -1.0);
+		pinball::MissTextBox->Clear(1);
+		pinball::InfoTextBox->Display(pinball::get_rc_string(34, 0), -1.0, 2);
 		EndGameTimeoutTimer = timer::set(3.0, this, EndGame_timeout);
 		break;
 	case 1024:
@@ -594,7 +594,7 @@ void TPinballTable::EndGame_timeout(int timerId, void* caller)
 	if (table->Demo)
 		table->Demo->Message(1022, 0.0);
 	control::handler(67, pinball::MissTextBox);
-	pinball::InfoTextBox->Display(pinball::get_rc_string(24, 0), -1.0);
+	pinball::InfoTextBox->Display(pinball::get_rc_string(24, 0), -1.0, 2);
 }
 
 void TPinballTable::LightShow_timeout(int timerId, void* caller)

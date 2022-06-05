@@ -172,6 +172,11 @@ public class MainActivity extends SDLActivity {
                 runOnUiThread(() -> Toast.makeText(getContext(), getString(R.string.newhighscore, score), Toast.LENGTH_LONG).show());
             }
         }
+
+        @Override
+        public int onHighScoreRequested() {
+            return getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+        }
     };
 
     @Override

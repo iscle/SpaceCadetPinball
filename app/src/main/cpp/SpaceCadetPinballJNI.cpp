@@ -39,6 +39,16 @@ void SpaceCadetPinballJNI::addHighScore(int score) {
     env->CallStaticVoidMethod(clazz, mid, score);
 }
 
+int SpaceCadetPinballJNI::getHighScore() {
+    JNIEnv *env;
+    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+    jclass clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "getHighScore", "()I");
+
+    return env->CallStaticIntMethod(clazz, mid);
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,

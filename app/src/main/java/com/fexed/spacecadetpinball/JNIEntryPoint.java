@@ -12,4 +12,7 @@ public class JNIEntryPoint {
     static void addHighScore(int score) {
         StateHelper.INSTANCE.addHighScore(score);
     }
+    static int getHighScore() {
+        return StateHelper.INSTANCE.getHighScore();
+    }
 }

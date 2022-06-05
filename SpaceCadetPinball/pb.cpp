@@ -538,20 +538,13 @@ void pb::tilt_no_more()
 
 bool pb::chk_highscore()
 {
-	if (demo_mode)
-		return false;
 	int playerIndex = MainTable->PlayerCount - 1;
-	if (playerIndex < 0)
-		return false;
-	for (int i = playerIndex;
-	     high_score::get_score_position(highscore_table, MainTable->PlayerScores[i].ScoreStruct->Score) < 0;
-	     --i)
-	{
-		if (--playerIndex < 0)
-			return false;
-	}
-	SpaceCadetPinballJNI::addHighScore(MainTable->PlayerScores[playerIndex].ScoreStruct->Score);
-	return true;
+	int currscore = MainTable->PlayerScores[playerIndex].ScoreStruct->Score;
+	int oldscore = SpaceCadetPinballJNI::getHighScore();
+	if (currscore > oldscore) {
+		SpaceCadetPinballJNI::addHighScore(currscore);
+		return true;
+	} else return false;
 }
 
 float pb::collide(float timeNow, float timeDelta, TBall* ball)

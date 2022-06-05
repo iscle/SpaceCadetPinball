@@ -54,6 +54,15 @@ public enum StateHelper {
         }
     }
 
+    public int getHighScore() {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                return listener.onHighScoreRequested();
+            }
+        }
+        return -1;
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
@@ -61,5 +70,7 @@ public enum StateHelper {
         void onBallInPlungerChanged(boolean isBallInPlunger);
 
         void onHighScorePresented(int score);
+
+        int onHighScoreRequested();
     }
 }

@@ -13,6 +13,8 @@ public:
 
     static void addHighScore(int score);
 
+    static int getHighScore();
+
     enum GAMESTATE {
         RUNNING = 1,
         FINISHED = 2

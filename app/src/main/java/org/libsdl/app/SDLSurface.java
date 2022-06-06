@@ -95,7 +95,7 @@ public class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, V
             return;
         }
 
-        width += 700;
+        width = (int) Math.floor(width*1.65);
         mWidth = width;
         mHeight = height;
         int nDeviceWidth = width;

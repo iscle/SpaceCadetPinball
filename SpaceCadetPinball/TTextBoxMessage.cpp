@@ -2,10 +2,11 @@
 #include "TTextBoxMessage.h"
 #include "pb.h"
 
-TTextBoxMessage::TTextBoxMessage(const char* text, float time)
+TTextBoxMessage::TTextBoxMessage(const char* text, float time, int type)
 {
 	NextMessage = nullptr;
 	Time = time;
+	Type = type;
 	EndTicks = pb::time_ticks + static_cast<int>(time * 1000.0f);
 	if (text)
 	{

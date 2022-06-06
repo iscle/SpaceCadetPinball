@@ -107,7 +107,6 @@ void TTextBox::Display(const char* text, float time, int type)
 {
 	// 1 -> mission txtbx
 	// 2 -> info txtbx
-	SpaceCadetPinballJNI::displayText(text, type);
 	if (!text)
 		return;
 
@@ -127,9 +126,9 @@ void TTextBox::Display(const char* text, float time, int type)
 	else
 	{
 		if (Timer == -1)
-			Clear(1);
+			Clear(type);
 
-		auto message = new TTextBoxMessage(text, time);
+		auto message = new TTextBoxMessage(text, time, type);
 		if (message)
 		{
 			if (message->Text)
@@ -192,6 +191,7 @@ void TTextBox::Draw()
 
 	if (display)
 	{
+		SpaceCadetPinballJNI::displayText(Message1->Text, Message1->Type);
 		auto font = Font;
 		if (!font)
 		{

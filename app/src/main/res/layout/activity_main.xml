@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/plunger"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/left"
+        app:layout_constraintBottom_toTopOf="@+id/txtscore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -140,6 +140,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/left"
         app:layout_constraintEnd_toStartOf="@+id/right"
         app:layout_constraintStart_toEndOf="@+id/left"
         app:layout_constraintTop_toTopOf="@+id/left"

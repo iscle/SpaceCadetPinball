@@ -87,16 +87,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/replay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/reset"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/left"
-        app:layout_constraintEnd_toStartOf="@+id/right"
-        app:layout_constraintStart_toEndOf="@+id/left" />
-
     <TextView
         android:id="@+id/missiontxt"
         android:layout_width="0dp"
@@ -136,7 +126,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/settingsbtn"
-        app:layout_constraintStart_toEndOf="@+id/fakebtn"
+        app:layout_constraintStart_toEndOf="@+id/replay"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="text box" />
 
@@ -170,7 +160,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/fakebtn"
+        android:id="@+id/replay"
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -179,8 +169,8 @@
         android:background="@android:color/transparent"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        android:src="@drawable/settings"
-        android:visibility="invisible"
+        android:src="@drawable/replay"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

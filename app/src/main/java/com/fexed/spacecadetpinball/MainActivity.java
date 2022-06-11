@@ -156,7 +156,7 @@ public class MainActivity extends SDLActivity {
     private StateHelper.IStateListener mStateListener = new StateHelper.IStateListener() {
         @Override
         public void onStateChanged(int state) {
-            runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
+            //runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
         }
 
         @Override

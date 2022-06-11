@@ -7,20 +7,6 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/left"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/cardview_shadow_end_color"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/tilt_left"
-        app:layout_constraintEnd_toStartOf="@+id/plunger"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/tilt_left"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
@@ -29,6 +15,7 @@
         android:layout_marginEnd="24dp"
         android:text="@string/tilt"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/left"
         app:layout_constraintHorizontal_bias="0.0"
@@ -42,6 +29,7 @@
         android:layout_marginStart="24dp"
         android:text="@string/tilt"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/right"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tilt"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/tilt_left"
         app:layout_constraintEnd_toStartOf="@+id/tilt_right"
         app:layout_constraintStart_toEndOf="@+id/tilt_left" />
@@ -65,12 +54,28 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/cardview_shadow_end_color"
+        android:background="@android:color/transparent"
         android:text="@string/right"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tilt_right"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/plunger" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tilt_left"
+        app:layout_constraintEnd_toStartOf="@+id/plunger"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/plunger"
@@ -80,8 +85,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/left"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/left" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/replay"
@@ -91,8 +95,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/left"
         app:layout_constraintEnd_toStartOf="@+id/right"
-        app:layout_constraintStart_toEndOf="@+id/left"
-        app:layout_constraintTop_toTopOf="@+id/left" />
+        app:layout_constraintStart_toEndOf="@+id/left" />
 
     <TextView
         android:id="@+id/missiontxt"
@@ -103,7 +106,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ballstxt"
         app:layout_constraintEnd_toEndOf="@+id/infotxt"
         app:layout_constraintStart_toStartOf="@+id/infotxt"
         app:layout_constraintTop_toBottomOf="@+id/infotxt"
@@ -113,10 +115,10 @@
         android:id="@+id/ballstxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/txtscore"
         app:layout_constraintStart_toStartOf="@+id/txtscore"
         app:layout_constraintTop_toBottomOf="@+id/txtscore"
@@ -126,7 +128,7 @@
         android:id="@+id/infotxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
@@ -134,22 +136,23 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/settingsbtn"
-        app:layout_constraintStart_toEndOf="@+id/txtscore"
+        app:layout_constraintStart_toEndOf="@+id/fakebtn"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="text box" />
 
     <TextView
         android:id="@+id/txtscore"
-        android:layout_width="125dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textAlignment="textStart"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/right"
+        app:layout_constraintStart_toEndOf="@+id/left"
+        app:layout_constraintTop_toTopOf="@+id/left"
         tools:text="10000000" />
 
     <ImageButton
@@ -164,6 +167,21 @@
         android:minHeight="48dp"
         android:src="@drawable/settings"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/fakebtn"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/settings"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

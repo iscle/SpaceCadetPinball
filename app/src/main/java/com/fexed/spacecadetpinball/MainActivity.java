@@ -55,16 +55,6 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        mBinding.tiltLeft.setOnTouchListener((v1, event) -> {
-            v1.performClick();
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
-            }
-            return false;
-        });
 
         mBinding.right.setOnTouchListener((v1, event) -> {
             v1.performClick();
@@ -77,16 +67,6 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        mBinding.tiltRight.setOnTouchListener((v1, event) -> {
-            v1.performClick();
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PERIOD);
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_PERIOD);
-            }
-            return false;
-        });
 
         mBinding.plunger.setOnTouchListener((v1, event) -> {
             v1.performClick();
@@ -110,6 +90,29 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
+
+        mBinding.tiltLeft.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+            }
+            return false;
+        });
+
+        mBinding.tiltRight.setOnTouchListener((v1, event) -> {
+            v1.performClick();
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_PERIOD);
+            }
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_PERIOD);
+            }
+            return false;
+        });
+
         mBinding.tiltBottom.setOnTouchListener((v1, event) -> {
             v1.performClick();
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -120,7 +123,6 @@ public class MainActivity extends SDLActivity {
             }
             return false;
         });
-
 
         ImageButton settings = findViewById(R.id.settingsbtn);
         settings.setOnClickListener(view -> {
@@ -208,6 +210,18 @@ public class MainActivity extends SDLActivity {
     protected void onResume() {
         super.onResume();
         StateHelper.INSTANCE.addListener(mStateListener);
+
+        boolean tiltenabled = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("tiltbuttons", true);
+
+        if (tiltenabled) {
+            mBinding.tiltLeft.setVisibility(View.VISIBLE);
+            mBinding.tiltRight.setVisibility(View.VISIBLE);
+            mBinding.tiltBottom.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.tiltLeft.setVisibility(View.GONE);
+            mBinding.tiltRight.setVisibility(View.GONE);
+            mBinding.tiltBottom.setVisibility(View.GONE);
+        }
     }
 
     @Override

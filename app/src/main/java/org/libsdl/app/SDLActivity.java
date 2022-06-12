@@ -648,9 +648,7 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
      * so that is can be overridden
      */
     public static void setOrientation(int w, int h, boolean resizable, String hint) {
-        if (mSingleton != null) {
-            mSingleton.setOrientationBis(w, h, resizable, hint);
-        }
+        // do nothing to prevent orientation change
     }
 
     /**

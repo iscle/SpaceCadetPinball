@@ -3,10 +3,13 @@ package com.fexed.spacecadetpinball;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
@@ -55,6 +58,15 @@ public class Settings extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
             }
+        });
+
+        mBinding.gplaytxtv.setOnClickListener(view1 -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6687966458279653723"));
+            startActivity(browserIntent);
+        });
+        mBinding.githubtxtv.setOnClickListener(view1 -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fexed/Pinball-on-Android/releases"));
+            startActivity(browserIntent);
         });
     }
 }

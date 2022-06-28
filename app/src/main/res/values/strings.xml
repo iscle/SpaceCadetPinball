@@ -11,4 +11,6 @@
     <string name="tiltbuttons">Tilt buttons</string>
     <string name="username">Username</string>
     <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: Fexed</string>
+    <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Check out my other apps!</a></u></string>
+    <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Check out the latest version</a></u></string>
 </resources>

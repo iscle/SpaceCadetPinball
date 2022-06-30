@@ -75,6 +75,7 @@ void SpaceCadetPinballJNI::clearText(int type) {
 }
 
 void SpaceCadetPinballJNI::postScore(int score) {
+    // issue #18
     JNIEnv *env;
     g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 

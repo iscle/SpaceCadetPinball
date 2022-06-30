@@ -22,6 +22,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:gravity="bottom|left"
+            android:paddingLeft="64dp"
+            android:text="@string/left"
             android:textColor="@color/white" />
 
         <Button
@@ -30,6 +33,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:gravity="bottom|right"
+            android:paddingRight="64dp"
+            android:text="@string/right"
             android:textColor="@color/white" />
     </LinearLayout>
 

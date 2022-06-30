@@ -79,15 +79,14 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        mBinding.replay.setOnTouchListener((v1, event) -> {
-            v1.performClick();
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_F2);
-            }
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
-            }
-            return false;
+        mBinding.replay.setOnLongClickListener(view -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_F2);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
+            return true;
+        });
+
+        mBinding.replay.setOnClickListener(view -> {
+            Toast.makeText(getContext(), R.string.restartprompt, Toast.LENGTH_SHORT).show();
         });
 
 

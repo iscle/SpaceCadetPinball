@@ -1,5 +1,6 @@
 #include "SpaceCadetPinballJNI.h"
 #include "../../../../SpaceCadetPinball/winmain.h"
+#include "../../../../SpaceCadetPinball/Sound.h"
 #include <jni.h>
 #include <android/log.h>
 
@@ -101,4 +102,9 @@ Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject th
         jstring data_path) {
 winmain::BasePath = (char *) env->GetStringUTFChars(data_path, nullptr);
     env->GetJavaVM(&g_JavaVM);
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_fexed_spacecadetpinball_MainActivity_setVolume(JNIEnv *env, jobject thiz, jint vol) {
+    Sound::SetVolume(vol);
 }

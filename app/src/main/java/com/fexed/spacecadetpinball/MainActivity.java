@@ -221,7 +221,11 @@ public class MainActivity extends SDLActivity {
             mBinding.tiltRight.setVisibility(View.GONE);
             mBinding.tiltBottom.setVisibility(View.GONE);
         }
+
+        setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
     }
+
+    private native void setVolume(int vol);
 
     @Override
     protected void onPause() {

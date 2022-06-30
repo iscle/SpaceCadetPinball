@@ -13,6 +13,7 @@
     <string name="username">Nome utente</string>
     <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: Fexed</string>
     <string name="restartprompt">Tieni premuto per riavviare la partita</string>
+    <string name="volume">Volume</string>
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Dai un\'occhiata alle mie altre app!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Guarda l\'ultima versione</a></u></string>
 </resources>

@@ -3,6 +3,8 @@ package com.fexed.spacecadetpinball;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -223,6 +225,23 @@ public class MainActivity extends SDLActivity {
         }
 
         setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mBinding.infotxt.setVisibility(View.GONE);
+            mBinding.missiontxt.setVisibility(View.GONE);
+            mBinding.txtscore.setVisibility(View.GONE);
+            mBinding.ballstxt.setVisibility(View.GONE);
+        } else {
+            mBinding.infotxt.setVisibility(View.VISIBLE);
+            mBinding.missiontxt.setVisibility(View.VISIBLE);
+            mBinding.txtscore.setVisibility(View.VISIBLE);
+            mBinding.ballstxt.setVisibility(View.VISIBLE);
+        }
     }
 
     private native void setVolume(int vol);

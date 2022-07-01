@@ -50,7 +50,7 @@ public class Settings extends AppCompatActivity {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("customfonts", b).apply();
         });
 
-        mBinding.inpttxtusername.setText(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", ""));
+        mBinding.inpttxtusername.setText(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         mBinding.inpttxtusername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

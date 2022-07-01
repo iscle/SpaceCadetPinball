@@ -235,6 +235,13 @@ char* pinball::get_rc_string(int uID, int a2)
 	return result;
 }
 
+void pinball::set_rc_string(int uID, LPCSTR str)
+{
+	auto it = rc_strings.find(uID);
+	rc_strings.erase(it);
+	rc_strings.insert(std::pair<uint32_t, LPCSTR>(uID, str));
+}
+
 int pinball::get_rc_int(int uID, int* dst)
 {
 	char buffer[255];

@@ -167,6 +167,7 @@ public class MainActivity extends SDLActivity {
         public void onStateChanged(int state) {
             //runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
             setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+            putString(26, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         }
 
         @Override
@@ -297,8 +298,6 @@ public class MainActivity extends SDLActivity {
         }
     }
 
-    private native void setVolume(int vol);
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -319,4 +318,8 @@ public class MainActivity extends SDLActivity {
     }
 
     private native void initNative(String dataPath);
+
+    private native void setVolume(int vol);
+
+    private native void putString(int id, String str);
 }

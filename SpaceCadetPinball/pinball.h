@@ -12,6 +12,7 @@ public:
 	static int LeftShift;
 
 	static char* get_rc_string(int uID, int a2);
+	static void set_rc_string(int uID, LPCSTR str);
 	static int get_rc_int(int uID, int* dst);
 	static std::string make_path_name(const std::string& fileName);
 private:

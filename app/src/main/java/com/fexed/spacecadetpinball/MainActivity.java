@@ -160,6 +160,7 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onStateChanged(int state) {
             //runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
+            setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
         }
 
         @Override

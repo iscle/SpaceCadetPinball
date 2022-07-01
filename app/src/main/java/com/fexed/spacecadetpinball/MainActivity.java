@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +30,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
+import com.google.android.material.resources.TextAppearance;
 
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
@@ -232,26 +235,45 @@ public class MainActivity extends SDLActivity {
 
         if (customfonts) {
             mBinding.ballstxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.ballstxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.txtscore.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.txtscore.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.infotxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.infotxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.missiontxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.missiontxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.plunger.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
             mBinding.tiltLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltLeft.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.tiltBottom.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltBottom.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.tiltRight.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltRight.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.left.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.left.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.right.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.right.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
         } else {
+            int defaultColor = mBinding.plunger.getCurrentTextColor();
             mBinding.ballstxt.setTypeface(Typeface.DEFAULT);
+            mBinding.ballstxt.setTextColor(defaultColor);
             mBinding.txtscore.setTypeface(Typeface.DEFAULT);
+            mBinding.txtscore.setTextColor(defaultColor);
             mBinding.infotxt.setTypeface(Typeface.DEFAULT);
+            mBinding.infotxt.setTextColor(defaultColor);
             mBinding.missiontxt.setTypeface(Typeface.DEFAULT);
+            mBinding.missiontxt.setTextColor(defaultColor);
             mBinding.plunger.setTypeface(Typeface.DEFAULT);
             mBinding.tiltLeft.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltLeft.setTextColor(defaultColor);
             mBinding.tiltBottom.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltBottom.setTextColor(defaultColor);
             mBinding.tiltRight.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltRight.setTextColor(defaultColor);
             mBinding.left.setTypeface(Typeface.DEFAULT);
+            mBinding.left.setTextColor(defaultColor);
             mBinding.right.setTypeface(Typeface.DEFAULT);
+            mBinding.right.setTextColor(defaultColor);
         }
 
         setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));

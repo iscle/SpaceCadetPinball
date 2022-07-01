@@ -167,6 +167,7 @@ public class MainActivity extends SDLActivity {
         public void onStateChanged(int state) {
             //runOnUiThread(() -> mBinding.replay.setVisibility(state == GameState.RUNNING ? View.GONE : View.VISIBLE));
             setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+            putTranslations();
             putString(26, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         }
 
@@ -315,6 +316,14 @@ public class MainActivity extends SDLActivity {
                 "SDL2",
                 "SpaceCadetPinball"
         };
+    }
+
+    private void putTranslations() {
+        int[] ids = getResources().getIntArray(R.array.gametexts_idxs);
+        String[] texts = getResources().getStringArray(R.array.gametexts_strings);
+        for (int i = 0; i < ids.length; i++) {
+            putString(ids[i], texts[i]);
+        }
     }
 
     private native void initNative(String dataPath);

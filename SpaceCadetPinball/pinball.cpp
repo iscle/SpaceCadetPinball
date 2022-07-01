@@ -2,7 +2,6 @@
 #include "pinball.h"
 #include "winmain.h"
 
-// Todo: load translations from file
 std::map<uint32_t, LPCSTR> rc_strings
 {
 	{0, "Replay Awarded"},

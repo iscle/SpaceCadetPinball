@@ -243,6 +243,7 @@ public class MainActivity extends SDLActivity {
             mBinding.missiontxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
             mBinding.missiontxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.plunger.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            // not editing the plunger because it's a button (and using its color as default color)
             mBinding.tiltLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
             mBinding.tiltLeft.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
             mBinding.tiltBottom.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));

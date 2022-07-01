@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import org.libsdl.app.SDLActivity;
 
@@ -223,6 +226,32 @@ public class MainActivity extends SDLActivity {
             mBinding.tiltLeft.setVisibility(View.GONE);
             mBinding.tiltRight.setVisibility(View.GONE);
             mBinding.tiltBottom.setVisibility(View.GONE);
+        }
+
+        boolean customfonts = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
+
+        if (customfonts) {
+            mBinding.ballstxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.txtscore.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.infotxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.missiontxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.plunger.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltBottom.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltRight.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.left.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.right.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+        } else {
+            mBinding.ballstxt.setTypeface(Typeface.DEFAULT);
+            mBinding.txtscore.setTypeface(Typeface.DEFAULT);
+            mBinding.infotxt.setTypeface(Typeface.DEFAULT);
+            mBinding.missiontxt.setTypeface(Typeface.DEFAULT);
+            mBinding.plunger.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltLeft.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltBottom.setTypeface(Typeface.DEFAULT);
+            mBinding.tiltRight.setTypeface(Typeface.DEFAULT);
+            mBinding.left.setTypeface(Typeface.DEFAULT);
+            mBinding.right.setTypeface(Typeface.DEFAULT);
         }
 
         setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));

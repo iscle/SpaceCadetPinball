@@ -44,6 +44,12 @@ public class Settings extends AppCompatActivity {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("tiltbuttons", b).apply();
         });
 
+        boolean customfonts = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
+        mBinding.cstmfnts.setChecked(customfonts);
+        mBinding.cstmfnts.setOnCheckedChangeListener((compoundButton, b) -> {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("customfonts", b).apply();
+        });
+
         mBinding.inpttxtusername.setText(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", ""));
         mBinding.inpttxtusername.addTextChangedListener(new TextWatcher() {
             @Override

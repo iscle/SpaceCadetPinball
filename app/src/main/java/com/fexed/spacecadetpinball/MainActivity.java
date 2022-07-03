@@ -22,6 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import org.libsdl.app.SDLActivity;
 
@@ -44,6 +47,7 @@ public class MainActivity extends SDLActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setFullscreen();
         super.onCreate(savedInstanceState);
         File filesDir = getFilesDir();
         copyAssets(filesDir);
@@ -165,6 +169,16 @@ public class MainActivity extends SDLActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setFullscreen() {
+        int ui_Options = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(ui_Options);
     }
 
     private StateHelper.IStateListener mStateListener = new StateHelper.IStateListener() {

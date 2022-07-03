@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -28,6 +30,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
 import com.google.android.material.resources.TextAppearance;
@@ -36,6 +40,7 @@ public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";
 
     private ActivityMainBinding mBinding;
+    private Handler plungerTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +179,13 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onBallInPlungerChanged(boolean isBallInPlunger) {
             runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE));
+            if (isBallInPlunger) {
+                plungerTimer = new Handler(Looper.getMainLooper());
+                plungerTimer.postDelayed(() -> runOnUiThread(() -> Toast.makeText(getContext(), R.string.plungerhint, Toast.LENGTH_LONG).show()), 3000);
+            } else {
+                plungerTimer.removeCallbacksAndMessages(null);
+                plungerTimer = null;
+            }
         }
 
         @Override

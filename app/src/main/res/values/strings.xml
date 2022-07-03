@@ -14,6 +14,7 @@
     <string name="restartprompt">Long tap to restart the game</string>
     <string name="volume">Volume</string>
     <string name="customfonts">Custom fonts</string>
+    <string name="plungerhint">Keep pressed on the screen to throw the ball</string>
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Check out my other apps!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Check out the latest version</a></u></string>
 </resources>

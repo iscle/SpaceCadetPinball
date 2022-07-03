@@ -204,9 +204,7 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public void onHighScorePresented(int score) {
-            int oldscore = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
-            if (score > oldscore) {
-                getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putInt("highscore", score).apply();
+            if (HighScoreHandler.postHighScore(getContext(), score)) {
                 runOnUiThread(() -> Toast.makeText(getContext(), getString(R.string.newhighscore, score), Toast.LENGTH_LONG).show());
             }
         }

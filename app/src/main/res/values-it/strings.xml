@@ -18,4 +18,13 @@
     <string name="plungerhint">Tieni premuto sullo schermo per lanciare la pallina</string>
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Dai un\'occhiata alle mie altre app!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Guarda l\'ultima versione</a></u></string>
+    <string name="cheat_title">Trucchi</string>
+    <string name="cheat_disclaimer">Da attivare prima di lanciare la prima pallina</string>
+    <string name="cheat_gmax">gmax - Attiva il Pozzo Gravitazionale</string>
+    <string name="cheat_1max">1max - Pallina extra</string>
+    <string name="cheat_bmax">bmax - Palline infinite</string>
+    <string name="cheat_rmax">rmax - Incrementa il rango</string>
+    <string name="cheat_omax">omax - Gioca in Rosso</string>
+    <string name="cheat_lmax">lmax - Incrementa il moltiplicatore di campo</string>
+    <string name="cheat_hiddentest">hidden test - Modalità di debug</string>
 </resources>

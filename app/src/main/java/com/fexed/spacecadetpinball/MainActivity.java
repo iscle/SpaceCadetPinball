@@ -140,8 +140,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        ImageButton settings = findViewById(R.id.settingsbtn);
-        settings.setOnClickListener(view -> {
+        mBinding.settingsbtn.setOnClickListener(view -> {
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
         });

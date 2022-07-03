@@ -7,14 +7,14 @@
 
 static JavaVM* g_JavaVM = nullptr;
 static jclass clazz = nullptr;
+static JNIEnv *env = nullptr;
 
 void SpaceCadetPinballJNI::show_error_dialog(std::string title, std::string message) {
     __android_log_print(ANDROID_LOG_ERROR, "SpaceCadetPinballJNI", "Error: %s, %s", title.c_str(), message.c_str());
 }
 
 void SpaceCadetPinballJNI::notifyGameState(int state) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "setState", "(I)V");
@@ -23,8 +23,7 @@ void SpaceCadetPinballJNI::notifyGameState(int state) {
 }
 
 void SpaceCadetPinballJNI::setBallInPlunger(bool isInPlunger) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "setBallInPlunger", "(Z)V");
@@ -33,8 +32,7 @@ void SpaceCadetPinballJNI::setBallInPlunger(bool isInPlunger) {
 }
 
 void SpaceCadetPinballJNI::addHighScore(int score) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "addHighScore", "(I)V");
@@ -43,8 +41,7 @@ void SpaceCadetPinballJNI::addHighScore(int score) {
 }
 
 int SpaceCadetPinballJNI::getHighScore() {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "getHighScore", "()I");
@@ -53,8 +50,7 @@ int SpaceCadetPinballJNI::getHighScore() {
 }
 
 void SpaceCadetPinballJNI::displayText(const char* text, int type) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "printString", "(Ljava/lang/String;I)V");
@@ -65,8 +61,7 @@ void SpaceCadetPinballJNI::displayText(const char* text, int type) {
 }
 
 void SpaceCadetPinballJNI::clearText(int type) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "clearText", "(I)V");
@@ -75,9 +70,7 @@ void SpaceCadetPinballJNI::clearText(int type) {
 }
 
 void SpaceCadetPinballJNI::postScore(int score) {
-    // issue #18
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "postScore", "(I)V");
@@ -86,8 +79,7 @@ void SpaceCadetPinballJNI::postScore(int score) {
 }
 
 void SpaceCadetPinballJNI::postBallCount(int count) {
-    JNIEnv *env;
-    g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 
     if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
     jmethodID mid = env->GetStaticMethodID(clazz, "postBallCount", "(I)V");

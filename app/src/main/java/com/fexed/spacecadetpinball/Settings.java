@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
 import com.fexed.spacecadetpinball.databinding.ActivitySettingsBinding;
 
+import org.libsdl.app.SDLActivity;
 import org.w3c.dom.Text;
 
 public class Settings extends AppCompatActivity {
@@ -68,11 +70,11 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        mBinding.gplaytxtv.setOnClickListener(view1 -> {
+        mBinding.gplaytxtv.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6687966458279653723"));
             startActivity(browserIntent);
         });
-        mBinding.githubtxtv.setOnClickListener(view1 -> {
+        mBinding.githubtxtv.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fexed/Pinball-on-Android/releases"));
             startActivity(browserIntent);
         });
@@ -85,10 +87,107 @@ public class Settings extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        boolean cheatsUsed = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("cheatsused", false);
+        if (cheatsUsed) mBinding.cheatindicatorlbl.setText(R.string.cheat_used);
+        else mBinding.cheatindicatorlbl.setText(R.string.cheat_notused);
+
+        mBinding.gmaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_G);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_G);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.rmaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_R);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_R);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.onemaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_1);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_1);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.bmaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_B);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_B);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.omaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_O);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_O);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.lmaxbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_L);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_L);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_M);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_A);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_X);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_X);
+        });
+
+        mBinding.hdntestbtn.setOnClickListener(v -> {
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_H);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_H);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_I);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_I);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_D);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_D);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_D);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_D);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_E);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_E);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_N);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_N);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_SPACE);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_SPACE);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_T);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_T);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_E);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_E);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_S);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_S);
+            SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_T);
+            SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_T);
         });
     }
 }

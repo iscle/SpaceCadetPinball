@@ -32,4 +32,6 @@ public class JNIEntryPoint {
     static void postBallCount(int count) {
         StateHelper.INSTANCE.postBallCount(count);
     }
+
+    static void cheatsUsed() { StateHelper.INSTANCE.cheatsUsed(); }
 }

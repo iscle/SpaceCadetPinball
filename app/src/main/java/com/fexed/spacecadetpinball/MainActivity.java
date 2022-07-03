@@ -99,6 +99,7 @@ public class MainActivity extends SDLActivity {
         mBinding.replay.setOnLongClickListener(view -> {
             SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_F2);
             SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", false).apply();
             return true;
         });
 
@@ -140,8 +141,7 @@ public class MainActivity extends SDLActivity {
             return false;
         });
 
-        ImageButton settings = findViewById(R.id.settingsbtn);
-        settings.setOnClickListener(view -> {
+        mBinding.settingsbtn.setOnClickListener(view -> {
             Intent i = new Intent(this, Settings.class);
             startActivity(i);
         });
@@ -238,6 +238,11 @@ public class MainActivity extends SDLActivity {
             String str = getString(R.string.balls, count);
             runOnUiThread(() -> mBinding.ballstxt.setText(str));
         }
+
+        @Override
+        public void onCheatsUsed() {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", true).apply();
+        }
     };
 
     @Override
@@ -304,6 +309,7 @@ public class MainActivity extends SDLActivity {
         }
 
         setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+        getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", checkCheatsUsed()).apply();
     }
 
     @Override
@@ -355,4 +361,6 @@ public class MainActivity extends SDLActivity {
     private native void setVolume(int vol);
 
     private native void putString(int id, String str);
+
+    private native boolean checkCheatsUsed();
 }

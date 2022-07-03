@@ -27,6 +27,8 @@ public:
         RUNNING = 1,
         FINISHED = 2
     };
+
+    static void cheatsUsed();
 };
 
 #endif // SPACECADETPINBALLJNI_H

@@ -17,4 +17,15 @@
     <string name="plungerhint">Keep pressed on the screen to throw the ball</string>
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Check out my other apps!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Check out the latest version</a></u></string>
+    <string name="cheat_title">Cheats</string>
+    <string name="cheat_disclaimer">Activate before launching your first ball</string>
+    <string name="cheat_gmax">gmax - Enables the Gravity Well</string>
+    <string name="cheat_1max">1max - Extra ball</string>
+    <string name="cheat_bmax">bmax - Unlimited balls</string>
+    <string name="cheat_rmax">rmax - Increases your rank</string>
+    <string name="cheat_omax">omax - Play in Red</string>
+    <string name="cheat_lmax">lmax - Increase the field multiplier</string>
+    <string name="cheat_notused">No cheats used</string>
+    <string name="cheat_used">Cheats used!</string>
+    <string name="cheat_hiddentest">hidden test - Debug mode</string>
 </resources>

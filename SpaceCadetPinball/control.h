@@ -75,6 +75,7 @@ public:
 	static TPinballComponent* make_component_link(component_tag_base* tag);
 	static void handler(int code, TPinballComponent* cmp);
 	static void pbctrl_bdoor_controller(char key);
+	static bool check_cheats();
 	static void table_add_extra_ball(float count);
 	static void table_set_bonus_hold();
 	static void table_set_bonus();

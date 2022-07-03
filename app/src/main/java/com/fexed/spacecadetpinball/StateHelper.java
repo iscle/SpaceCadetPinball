@@ -95,6 +95,14 @@ public enum StateHelper {
         }
     }
 
+    public void cheatsUsed() {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onCheatsUsed();
+            }
+        }
+    }
+
     public interface IStateListener {
 
         void onStateChanged(int state);
@@ -112,5 +120,7 @@ public enum StateHelper {
         void onScorePosted(int score);
 
         void onBallCountUpdated(int count);
+
+        void onCheatsUsed();
     }
 }

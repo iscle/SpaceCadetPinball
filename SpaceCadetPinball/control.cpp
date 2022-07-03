@@ -692,6 +692,13 @@ void control::pbctrl_bdoor_controller(char key)
 	}
 
 	TableG->CheatsUsed = 1;
+    SpaceCadetPinballJNI::cheatsUsed();
+}
+
+bool control::check_cheats()
+{
+    if (TableG == nullptr) return false;
+    else return TableG->CheatsUsed == 1;
 }
 
 void control::table_add_extra_ball(float count)

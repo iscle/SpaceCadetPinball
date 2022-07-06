@@ -1,4 +1,4 @@
-name: Build Action
+name: Validate Fastlane
 on:
   push:
     branches:
@@ -13,6 +13,6 @@ jobs:
         uses: ashutoshgngwr/validate-fastlane-supply-metadata@v2
         with:
           # Path of the Fastlane Android directory
-          fastlaneDir: ./fastlane/metadata/android
+          fastlaneDir: fastlane/metadata/android
           # Throw error if a locale isn't recognised by Google Play Store
           usePlayStoreLocales: false

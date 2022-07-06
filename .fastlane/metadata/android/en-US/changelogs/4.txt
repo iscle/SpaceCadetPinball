@@ -1,0 +1,5 @@
+Version 1.2:
+- responsive interface
+- replay button in top-left corner
+- full screen left/right buttons
+- tilt buttons now can be disabled

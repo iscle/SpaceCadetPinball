@@ -7,7 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -la ..
       - name: Validate Fastlane Supply Metadata
         # You may pin to the exact commit or the version.
         # uses: ashutoshgngwr/validate-fastlane-supply-metadata@d03bc88bf15d7c2ef8682fa057afbf2e4bc85fb4

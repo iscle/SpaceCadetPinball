@@ -7,11 +7,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
+      - name: Validate Fastlane Supply Metadata
+        # You may pin to the exact commit or the version.
+        # uses: ashutoshgngwr/validate-fastlane-supply-metadata@d03bc88bf15d7c2ef8682fa057afbf2e4bc85fb4
+        uses: ashutoshgngwr/validate-fastlane-supply-metadata@v2
         with:
-          submodules: recursive
-      - name: Build the app
-        run: |
-          chmod +x gradlew
-          ./gradlew build
+          # Path of the Fastlane Android directory
+          fastlaneDir: ./fastlane/metadata/android
+          # Throw error if a locale isn't recognised by Google Play Store
+          usePlayStoreLocales: false

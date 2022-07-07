@@ -33,7 +33,7 @@ public class Settings extends AppCompatActivity {
         View view = mBinding.getRoot();
         setContentView(view);
 
-        int score = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+        int score = HighScoreHandler.getHighScore(getApplicationContext());
         String txt = score + "";
         mBinding.highscoretxtv.setText(txt);
 

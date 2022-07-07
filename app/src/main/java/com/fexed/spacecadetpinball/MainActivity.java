@@ -211,7 +211,7 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public int onHighScoreRequested() {
-            return getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("highscore", 0);
+            return HighScoreHandler.getHighScore(getContext());
         }
 
         @Override

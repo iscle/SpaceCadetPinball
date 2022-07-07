@@ -14,4 +14,10 @@ public class HighScoreHandler {
         }
         return false;
     }
+
+    static int getHighScore(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE);
+
+        return prefs.getInt("highscore", 0);
+    }
 }

@@ -54,6 +54,14 @@ public class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, V
         mIsSurfaceReady = false;
     }
 
+    public float getSurfaceWidth() {
+        return mWidth;
+    }
+
+    public float getSurfaceHeight() {
+        return mHeight;
+    }
+
     public void handleResume() {
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -97,6 +105,9 @@ public class SDLSurface extends SurfaceView implements SurfaceHolder.Callback, V
 
         if (width < height) {
             width = (int) Math.floor(width * 1.65);
+            //setTranslationY((float) (height * 0.2));
+        } else {
+            setTranslationY(0);
         }
         mWidth = width;
         mHeight = height;

@@ -4,27 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import org.libsdl.app.SDLActivity;
 
@@ -33,11 +25,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
-import com.google.android.material.resources.TextAppearance;
 
 public class MainActivity extends SDLActivity {
     private static final String TAG = "MainActivity";

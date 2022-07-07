@@ -1,0 +1,11 @@
+Version 1.4:
+- custom fonts
+- player name now correctly loaded in game
+- immersive mode
+- cheats, some still not working though
+
+- various bugfixes
+	- right-to-left languages now should correctly see the controls
+	- startup crash on some devices should be fixed
+	- other crashes during gameplay now should be fixed
+	- 

@@ -34,4 +34,6 @@ public class JNIEntryPoint {
     }
 
     static void cheatsUsed() { StateHelper.INSTANCE.cheatsUsed(); }
+
+    static void gameIsReady() {StateHelper.INSTANCE.gameIsReady();}
 }

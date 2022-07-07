@@ -44,6 +44,7 @@ public class MainActivity extends SDLActivity {
 
     private ActivityMainBinding mBinding;
     private Handler plungerTimer;
+    private boolean isGameReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,6 +246,11 @@ public class MainActivity extends SDLActivity {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", true).apply();
             runOnUiThread(() -> mBinding.cheatAlert.setVisibility(View.VISIBLE));
         }
+
+        @Override
+        public void onGameReady() {
+            isGameReady = true;
+        }
     };
 
     @Override
@@ -310,7 +316,7 @@ public class MainActivity extends SDLActivity {
             mBinding.right.setTextColor(defaultColor);
         }
 
-        setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
+        if (isGameReady) setVolume(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getInt("volume", 100));
         getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", checkCheatsUsed()).apply();
     }
 

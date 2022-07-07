@@ -97,6 +97,15 @@ void SpaceCadetPinballJNI::cheatsUsed() {
     env->CallStaticVoidMethod(clazz, mid);
 }
 
+void SpaceCadetPinballJNI::gameReady() {
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "gameIsReady", "()V");
+
+    env->CallStaticVoidMethod(clazz, mid);
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_fexed_spacecadetpinball_MainActivity_initNative(JNIEnv *env, jobject thiz,

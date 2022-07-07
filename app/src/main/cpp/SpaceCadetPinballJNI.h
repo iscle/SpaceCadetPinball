@@ -29,6 +29,8 @@ public:
     };
 
     static void cheatsUsed();
+
+    static void gameReady();
 };
 
 #endif // SPACECADETPINBALLJNI_H

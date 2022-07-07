@@ -44,6 +44,7 @@ optionsStruct& winmain::Options = options::Options;
 
 int winmain::WinMain(LPCSTR lpCmdLine)
 {
+	SpaceCadetPinballJNI::gameReady();
 	restart = false;
 	bQuit = false;
 

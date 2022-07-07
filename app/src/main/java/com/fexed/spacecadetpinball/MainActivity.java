@@ -48,7 +48,6 @@ public class MainActivity extends SDLActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setFullscreen();
         super.onCreate(savedInstanceState);
         File filesDir = getFilesDir();
         copyAssets(filesDir);
@@ -256,6 +255,7 @@ public class MainActivity extends SDLActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        setFullscreen();
         StateHelper.INSTANCE.addListener(mStateListener);
 
         boolean tiltenabled = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("tiltbuttons", true);

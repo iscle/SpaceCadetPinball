@@ -1,100 +1,879 @@
 [general]
-; if ShowDevices exists and is non-zero then will display wave out devices and other stuff
-;
-; ShowDevices=0  : default
-; ShowDevices=1	 : show output from waveOutGetDevCaps
-ShowDevices=0
+WaveOutDevice=0
+ShowDebugDialogs=0
 
-; if WaveOutDevice exists it should be between zero and one less num devices
-; the default is WAVE_MAPPER
-;
-; WaveOutDevice=0 : use the first device (default)
-; WaveOutDevice=1 : use the second device
-; WaveOutDevice=-1: use WAVE_MAPPER (will use [Unknow Device] setttings)
-;
-;
-WaveOutDevice=-1
+;remix 1 = on 2 = off
+;good wave pos 0 = off, 1 = on
 
-; Wavemix will detect if it is running on a 286 and not use any 386 instructions
-; you can force it to use the 286 only code on a 386 by setting cmixit=1
-; cmixit=0 (default) 
-; cmixit=1 uses only 286 code (even on a 386 or >)
 
-[WinNT:default]
-; Remix=1 = ResetRemix()
-; Remix=2 = NoResetRemix()
-; default=1
-Remix=1
-
-; GoodWavePos=0 = uses timeGetTime() (default)
-; GoodWavePos=1 = uses waveOutGetPosition()
-GoodWavePos=0
-
-; WaveBlocks=#  (2<=#<=6) the number of ping pong buffers to use
-; default=3
-WaveBlocks=3
-
-; WaveBlockLen=#  min = 512 max = 4096
-;   if a number is not specified Wavemix.dll will try to determine a size
-;
-
-; SamplesPerSec=11 (11.025 Khz) (default)
-;              =22 (22.04  KHz)
-;              =44 (44.1   KHz)
-SamplesPerSec=11
-
-[WinNT:Windows Sound System Playback]
-; Need to set do11khzmce=FALSE in system.ini->[sndsys.drv] if want to use Remix=1 and SamplesPerSec=11
-Remix=1
-GoodWavePos=1
+[Win95:Default]
 WaveBlocks=4
-SamplesPerSec=22
-;WaveBlockLen=
-
-[WinNT:MultiSound Wave Out]
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=4
+Channels=1
 Remix=2
 GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Adlib Gold 1000
+;Driver - v1.2
+[Win95:Yamaha GSS Wave Out]
+WaveBlocks=4
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=4
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;From registry.
+;Adlib Gold 1000
+;Driver - v1.2
+[Win95:Adlib Gold 1000]
+WaveBlocks=4
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=4
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most common settings
+[Win95:Sound Galaxy Playback]
 WaveBlocks=3
-;WaveBlockLen=
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
 
-[WinNT:SB16 Wave Out]
+;Aztech Nova-16 (OEM), FCC: I38-MMSN822
+;Win 95 Aztech Sound Galaxy Washington 16
+;Aztech Nova-16 (OEM), FCC: I38-MMSN811
+;Driver - Win 95 Aztech Nova
+[Win95:Aztech Nova 16 Option 1]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Aztech Sound Galaxy Nova 16 (non-OEM card), FCC: I38-MMSN815
+;Driver - Win 95 Aztech Nova 16
+[Win95:Aztech Nova 16 Option 2]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
 Remix=1
 GoodWavePos=0
-WaveBlocks=5
-SamplesPerSec=22
-;WaveBlockLen=
+CMixit=1
 
-[WinNT:SBPro Wave Out]
+;Aztech Washington-16, FCC: I38-MMSN824
+;Driver - Win 95 Aztech Sound Galaxy Washington 16
+[Win95:Aztech Washington-16]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
 Remix=1
 GoodWavePos=0
-WaveBlocks=5
-;WaveBlockLen=
+CMixit=1
 
-[WinNT:Media Vision Waveform Output]
-Remix=1
-GoodWavePos=0
-WaveBlocks=4
-;WaveBlockLen=
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-[WinNT:MVI Pro Audio/CDPC Wave Output]
-Remix=1
-GoodWavePos=0
-WaveBlocks=4
-;WaveBlockLen=
-
-[WinNT:UltraSound Waveform Output]
+;Most common.
+[Win95:Sound Blaster Playback]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
 Remix=2
 GoodWavePos=0
+CMixit=1
+
+;Aztech Sound Galaxy Pro 16, FCC: 138-MMSN810
+;Driver - Win 95 SB Pro
+[Win95:Aztech Sound Galaxy Pro 16]
 WaveBlocks=3
+WaveBlockLen=1376
 SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
 
-[not compatible]
-; sound drivers that are not compatible with wavemix can be added here
-; (the =1 is necessary).  One of the major conflicts occur with the PC Speaker
-; drivers.  The wavemix.dll will only work with devices that support asynchronous
-; operation - most of the pc speaker drivers are synchronous.  The name of the devices
-; can be easily seen by setting ShowDevices=1 in the [general] section and then running
-; a program which uses the wavemixer.  One major problem with some of the pc speaker
-; drivers is that they report that they are asynchronous when they are really not.
+;Creative Labs Sound Blaster, CT 1350B
+;Driver - Win 95 SB
+[Win95:Sound Blaster Option 1]
+WaveBlocks=2
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=1
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
 
-Wave driver for PC Speaker=1
+;Creative Labs Sound Blaster DSP 1321, CT 1320U
+;Driver - Win 95 SB
+[Win95:Sound Blaster Option 2]
+WaveBlocks=2
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Creative Labs Sound Blaster Pro 2, CT 1600
+;Creative Labs Sound Blaster Pro, CT 1330A
+;Driver - Win 95 SB Pro
+[Win95:Sound Blaster Pro]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Creative Labs Sound Blaster v2.00, CT 1320A
+;Driver - Win 95 SB
+[Win95:Sound Blaster Option 3]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Creative Labs Sound Blaster w/2.0 DSP, CT 1320C
+;Driver - Win 95 Creative Labs SB
+[Win95:Sound Blaster Option 4]
+WaveBlocks=3
+WaveBlockLen=1024
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Reveal Sound FX 16  Model SC450, FCC: I38-MMSN812
+;Driver - Win 95 SB Pro
+[Win95:Reveal Sound FX 16]
+WaveBlocks=2
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Media Vision Thunder Board Card, FCC ID: IXW650-0007-01, P/N: 650-0007-03G
+;Driver - Win 95 Media Vision Thunderboard
+[Win95:Media Vision Thunder Board]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Turtle Beach Monte Carlo
+;Driver - Win 95 SB Pro
+[Win95:Turtle Beach Monte Carlo Option 2]
+WaveBlocks=3
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most Common
+[Win95:SB16 Wave Out]
+WaveBlocks=4
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=4
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Creative Labs Sound Blaster 16 MCD, CT 1750
+;Creative Labs Sound Blaster 16, CT 1740
+;Driver - Win 95 SB 16/AWE32
+[Win95:Sound Blaster 16 Option 1]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Creative Labs Sound Blaster 16 SCSI, CT 1770
+;Creative Labs Sound Blaster 16, CT  2230
+;Driver - Win 95 SB 16
+[Win95:Sound Blaster 16 Option 2]
+WaveBlocks=3
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Creative Labs Sound Blaster 16 Plug and Play, CT 2270
+;Driver - Win 95 SB 16 Plug and Play
+[Win95:Sound Blaster 16 Plug and Play]
+WaveBlocks=3
+WaveBlockLen=1378
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Creative Labs Sound Blaster 16 Value Card, CT 2770
+;Driver - Win 95 SB 16/AWE32
+[Win95:Sound Blaster 16 Option 3]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Creative Labs Sound Blaster 16-ASP Card (Advanced Signal Processor), CT 1790
+;Driver - Win 95 SB 16/AWE32
+[Win95:Sound Blaster 16 Option 4]
+WaveBlocks=4
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Creative Labs Sound Blaster AWE32 Card, CT 2760
+;Driver - Win 95 SB 16/AWE32
+[Win95:Sound Blaster AWE32]
+WaveBlocks=4
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=4
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Diamond Sonic Sound LX (Multimedia), FCC: K2Y-Pro16, P/N: 59-006781F-1002 rev1.3
+;Driver - Diamond Audio Driver v1.20p
+[Win95:Diamond Wave Playback]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Diamond Sonic Sound LX (Multimedia), FCC: K2Y-Pro16, P/N: 59-006781F-1002 rev1.3
+;Driver - Diamond Audio Driver v1.20p
+[Win95:Diamond Sonic Sound LX Option 1]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most Common
+;Driver - Sonic Sound Audio Device - v2.03
+[Win95:SonicSound Audio Wave Playback]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Diamond Sonic Sound LX, Part# S601206-A, FCC: IDW30601206
+;Driver - Sonic Sound Audio Device - v2.03
+[Win95:Diamond Sonic Sound LX Option 2]
+WaveBlocks=3
+WaveBlockLen=1500
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Diamond Sonic Sound , Part# 59-xP6726E-1002 v1.2, FCC: K2Y-Audio16c
+;Driver - Sonic Sound Audio Device - v2.03
+[Win95:Diamond Sonic Sound]
+WaveBlocks=2
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Ensoniq Soundscape 16-bit Wavetable, FCC: LF7SS2016, P/N: 4001022851 rev. B
+;Driver - Soundscape DVDAD-1848 wave, aux, mixer
+[Win95:Soundscape (Wave) Wave Out]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Ensoniq Soundscape 16-bit Wavetable, FCC: LF7SS2016, P/N: 4001022851 rev. B
+;Driver - Soundscape DVDAD-1848 wave, aux, mixer
+[Win95:Ensoniq Soundscape]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most common
+[Win95:ESS AudioDrive Playback]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;ESS ES488 AudioDrive, P057-01-A0B, FCC: K9J057A08
+;Driver - Win 95 ESS488
+[Win95:ESS ES488 AudioDrive]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;ESS ES688 AudioDrive 
+;Driver - Win 95 ESS ES688 AudioDrive 
+[Win95:ESS ES688 AudioDrive]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;ESS ES1488 AudioDrive rev 1.0
+;Driver - Win 95 ESS ES 1488 AudioDrive
+[Win95:ESS ES1488 AudioDrive]
+WaveBlocks=3
+WaveBlockLen=1000
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;ESS ES1688 AudioDrive rev 1.1
+;Driver - Win 95 ESS ES1688 AudioDrive 
+[Win95:ESS ES1688 AudioDrive]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Logitech Sound Man Wave, FCC: DZLSNDMNWV, P/N: 270503-00-A
+;Driver - Soundman Wave Audio 1.0
+[Win95:Soundman Wave Audio]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Logitech Sound Man Wave, FCC: DZLSNDMNWV, P/N: 270503-00-A
+;Driver - Soundman Wave Audio 1.0
+[Win95:Logitech Sound Man Wave]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most Common
+[Win95:Media Vision Wave Output]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Media Vision Deluxe Sound Card P/N: 650-0123-51A
+;Driver - Win 95 Jazz 16
+[Win95:Media Vision Deluxe Sound Card]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Media Vision OEM JAZZ Card (16MVCARD: P/N 020 0420 501 R01, FCC ID: GDE0166)
+;Driver - Win 95 Jazz 16
+[Win95:Media Vision Jazz 16]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Media Vision Premium 3D, Part #650-0120-01D, Pro Wave
+;Driver - Win 95 Media Vision Audio 3D
+[Win95:Media Vision Premium 3D]
+WaveBlocks=2
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=1
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;Media Vision Pro Sonic Sound Card, Part #650-0087-54A
+;Driver - Win 95 Media Vision Jazz 16
+[Win95:Media Vision Pro Sonic]
+WaveBlocks=2
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Media Vision Premium 3D MCD, FCC ID IXW-TRIPLE, P/N: 650-0117-01B
+;Driver - Win 95 Media Vision Pro Audio 3D
+[Win95:Media Vision Premium 3D MCD]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Media Vision Pro Audio Spectrum 16, FCC: IXW-PAS16NS, P/N: 650-0044-56-G
+;Driver - Win 95 MV Pro Audio Spectrum 16 Audio
+[Win95:Media Vision Pro Audio/CDPC Wave Output]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Media Vision Pro Audio Spectrum 16, FCC: IXW-PAS16NS, P/N: 650-0044-56-G
+;Driver - Win 95 MV Pro Audio Spectrum 16 Audio
+[Win95:Media Vision Pro Audio Spectrum 16 Option 1]
+WaveBlocks=3
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=2
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most Common
+;Driver - Win 95 MV Pro Audio Spectrum 16
+[Win95:MVI Pro Audio/CDPC Wave Output]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Media Vision Pro Audio Spectrum 16, FCC: IXW-PAS16, P/N: 650-0022-01B
+;Driver - Win 95 MV Pro Audio Spectrum 16
+[Win95:Media Vision Pro Audio Spectrum 16 Option 2]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Media Vision PAS Plus, FCC ID: IXW-MVIPAS2, P/N: 650-0014-01A
+;Driver - Win 95 MV Pro Audio Spectrum 16
+[Win95:Media Vision PAS Plus]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Media Vision Pro Audio Studio 16, FCC ID: IXW-PAR, P/N: 650-0060-03B
+;Driver - Win 95 MV Pro Audio Spectrum 16 w/SCSI
+[Win95:Media Vision Pro Audio Studio 16]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Media Vision Thunder & Lightning Card (Audio/Video), Part #650-0025-03C
+;Driver - Win 95 Media Vision Thunder Board
+[Win95:Media Vision Audio]
+WaveBlocks=2
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=1
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Media Vision Thunder & Lightning Card (Audio/Video), Part #650-0025-03C
+;Driver - Win 95 Media Vision Thunder Board
+[Win95:Media Vision Thunder & Lightning]
+WaveBlocks=2
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=1
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Most common
+;Driver - Win 95 Windows Sound System
+[Win95:Sound System Playback]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Compaq Business Audio
+;Driver - Win 95 Compaq Business Audio
+[Win95:Compaq Business Audio]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;MS Windows Sound System 
+;Driver - Win 95 Windows Sound System
+[Win95:Microsoft Windows Sound System]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Sound Galaxy NX Pro 16
+;Driver - Win 95 MS Windows Sound System Compatible
+[Win95:Sound Galaxy NX Pro 16]
+WaveBlocks=4
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+;Turtle Beach Monte Carlo
+;Driver - Win 95 MS Windows Sound System Compatible
+[Win95:Turtle Beach Monte Carlo Option 1]
+WaveBlocks=4
+WaveBlockLen=1536
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+;New Media .WAVjammer PCMCIA 16-bit Sound, FCC: J9MSOUND
+;Driver - Win 95 New Media .WAVjammer audio adapter
+[Win95:New Media .WAVjammer PCMCIA]
+WaveBlocks=3
+WaveBlockLen=2048
+SamplesPerSec=11
+PauseBlocks=0
+Channels=2
+Remix=2
+GoodWavePos=1
+CMixit=1
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Mozart 16, P/N 40513293, S/N S601211-G, FCC: IEW30601211
+;Driver - Mozart Audio Device Driver v1.10D
+[Win95:Mozart Playback]
+WaveBlocks=3
+WaveBlockLen=1378
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;Mozart 16, P/N 40513293, S/N S601211-G
+;Driver - Mozart Audio Device Driver v1.10D
+[Win95:Mozart 16]
+WaveBlocks=3
+WaveBlockLen=1378
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=1
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Gravis UItraSound Max v2.1, FCC: HYN412-0043-AA, S/N 0495
+;Driver - Gravis Ultrasound v5.45
+[Win95:Ultrasound Waveform Output]
+WaveBlocks=6
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=6
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;Gravis UItraSound Max v2.1, FCC: HYN412-0043-AA, S/N 0495
+;Driver - Gravis Ultrasound v5.45
+[Win95:Gravis UltraSound]
+WaveBlocks=6
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=6
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[Win95:Generic Option 1]
+WaveBlocks=3
+WaveBlockLen=689
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 2]
+WaveBlocks=3
+WaveBlockLen=689
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 3]
+WaveBlocks=3
+WaveBlockLen=1378
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 4]
+WaveBlocks=3
+WaveBlockLen=1378
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 5]
+WaveBlocks=3
+WaveBlockLen=2756
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 6]
+WaveBlocks=3
+WaveBlockLen=2756
+SamplesPerSec=11
+PauseBlocks=0
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 7]
+WaveBlocks=3
+WaveBlockLen=6000
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+
+[Win95:Generic Option 8]
+WaveBlocks=3
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=1
+GoodWavePos=0
+CMixit=1
+
+[Win95:Generic Option 9]
+WaveBlocks=3
+WaveBlockLen=4096
+SamplesPerSec=11
+PauseBlocks=3
+Channels=1
+Remix=2
+GoodWavePos=0
+CMixit=1
+
+
+

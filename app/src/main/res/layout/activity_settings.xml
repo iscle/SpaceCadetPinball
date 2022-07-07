@@ -174,7 +174,7 @@
             android:text="@string/cheat_disclaimer"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/cheatindicatorlbl" />
 
         <TextView
@@ -185,8 +185,19 @@
             android:text="@string/cheat_notused"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <ImageView
+            android:id="@+id/cheatAlertSttngs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="@+id/textView6"
+            app:srcCompat="@drawable/warn" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -96,8 +96,14 @@ public class Settings extends AppCompatActivity {
         });
 
         boolean cheatsUsed = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("cheatsused", false);
-        if (cheatsUsed) mBinding.cheatindicatorlbl.setText(R.string.cheat_used);
-        else mBinding.cheatindicatorlbl.setText(R.string.cheat_notused);
+        if (cheatsUsed) {
+            mBinding.cheatindicatorlbl.setText(R.string.cheat_used);
+            mBinding.cheatAlertSttngs.setVisibility(View.VISIBLE);
+        }
+        else {
+            mBinding.cheatindicatorlbl.setText(R.string.cheat_notused);
+            mBinding.cheatAlertSttngs.setVisibility(View.INVISIBLE);
+        }
 
         mBinding.gmaxbtn.setOnClickListener(v -> {
             SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_G);

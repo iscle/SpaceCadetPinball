@@ -100,6 +100,7 @@ public class MainActivity extends SDLActivity {
             SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_F2);
             SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_F2);
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", false).apply();
+            mBinding.cheatAlert.setVisibility(View.INVISIBLE);
             return true;
         });
 
@@ -242,6 +243,7 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onCheatsUsed() {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("cheatsused", true).apply();
+            runOnUiThread(() -> mBinding.cheatAlert.setVisibility(View.VISIBLE));
         }
     };
 

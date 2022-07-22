@@ -183,13 +183,18 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onBallInPlungerChanged(boolean isBallInPlunger) {
             runOnUiThread(() -> mBinding.plunger.setVisibility(isBallInPlunger ? View.VISIBLE : View.INVISIBLE));
-            if (isBallInPlunger) {
-                plungerTimer = new Handler(Looper.getMainLooper());
-                plungerTimer.postDelayed(() -> runOnUiThread(() -> Toast.makeText(getContext(), R.string.plungerhint, Toast.LENGTH_LONG).show()), 3000);
-            } else {
-                plungerTimer.removeCallbacksAndMessages(null);
-                plungerTimer = null;
-            }
+                if (isBallInPlunger) {
+                    plungerTimer = new Handler(Looper.getMainLooper());
+                    plungerTimer.postDelayed(() -> runOnUiThread(() ->  {
+                        if (getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("plungerPopup", true)) {
+                            Toast.makeText(getContext(), R.string.plungerhint, Toast.LENGTH_LONG).show();
+                        }
+                        mBinding.plunger.setVisibility(View.VISIBLE);
+                    }), 3000);
+                } else {
+                    plungerTimer.removeCallbacksAndMessages(null);
+                    plungerTimer = null;
+                }
         }
 
         @Override

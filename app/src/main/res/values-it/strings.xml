@@ -15,6 +15,7 @@
     <string name="restartprompt">Tieni premuto per riavviare la partita</string>
     <string name="volume">Volume</string>
     <string name="customfonts">Font personalizzato</string>
+    <string name="plungerpopup">Popup del lanciatore</string>
     <string name="plungerhint">Tieni premuto sullo schermo per lanciare la pallina</string>
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Dai un\'occhiata alle mie altre app!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Guarda l\'ultima versione</a></u></string>

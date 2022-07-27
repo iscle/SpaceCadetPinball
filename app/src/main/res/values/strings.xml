@@ -10,7 +10,7 @@
     <string name="balls">Ball %d</string>
     <string name="tiltbuttons">Tilt buttons</string>
     <string name="username">Username</string>
-    <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: Fexed</string>
+    <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: fexed, th3vanger</string>
     <string name="restartprompt">Long tap to restart the game</string>
     <string name="volume">Volume</string>
     <string name="customfonts">Custom fonts</string>
@@ -29,4 +29,10 @@
     <string name="cheat_notused">No cheats used</string>
     <string name="cheat_used">Cheats used!</string>
     <string name="cheat_hiddentest">hidden test - Debug mode</string>
+    <string name="loading">Loading…</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="leaderboard_current">Leaderboard (Current: %s)</string>
+    <string name="Settings">Settings</string>
+    <string name="scoreupload_ok">Score uploaded for %s</string>
+    <string name="scoreupload_err">Error %s while uploading score</string>
 </resources>

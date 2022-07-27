@@ -22,6 +22,8 @@ import com.fexed.spacecadetpinball.databinding.ActivitySettingsBinding;
 import org.libsdl.app.SDLActivity;
 import org.w3c.dom.Text;
 
+import java.security.PublicKey;
+
 public class Settings extends AppCompatActivity {
 
     private ActivitySettingsBinding mBinding;
@@ -32,6 +34,8 @@ public class Settings extends AppCompatActivity {
         mBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
+        HighScoreHandler.postScore(getApplicationContext(), false, false);
+        HighScoreHandler.postScore(getApplicationContext(), false, true);
 
         int score = HighScoreHandler.getHighScore(getApplicationContext());
         String txt = score + "";
@@ -50,6 +54,12 @@ public class Settings extends AppCompatActivity {
         mBinding.cstmfnts.setChecked(customfonts);
         mBinding.cstmfnts.setOnCheckedChangeListener((compoundButton, b) -> {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("customfonts", b).apply();
+        });
+
+        boolean plungerpopup = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("plungerPopup", true);
+        mBinding.plungerpopup.setChecked(plungerpopup);
+        mBinding.plungerpopup.setOnCheckedChangeListener((compoundButton, b) -> {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("plungerPopup", b).apply();
         });
 
         mBinding.inpttxtusername.setText(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
@@ -195,5 +205,16 @@ public class Settings extends AppCompatActivity {
             SDLActivity.onNativeKeyDown(KeyEvent.KEYCODE_T);
             SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_T);
         });
+
+        mBinding.testscorebtn.setOnClickListener(v -> {
+            Intent i = new Intent(this, LeaderboardActivity.class);
+            startActivity(i);
+        });
+
+        /*
+        mBinding.resetuid.setOnClickListener(v -> {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().remove("userid").apply();
+        });
+        */
     }
 }

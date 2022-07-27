@@ -11,7 +11,7 @@
     <string name="balls">Palla %d</string>
     <string name="tiltbuttons">Pulsanti tilt</string>
     <string name="username">Nome utente</string>
-    <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: Fexed</string>
+    <string name="credits">Original game: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering by: k4zmu2a\nOriginal Android port by: Iscle\nCurrent Android port by: fexed, th3vanger</string>
     <string name="restartprompt">Tieni premuto per riavviare la partita</string>
     <string name="volume">Volume</string>
     <string name="customfonts">Font personalizzato</string>
@@ -30,4 +30,10 @@
     <string name="cheat_notused">Nessun trucco usato</string>
     <string name="cheat_used">Trucchi usati!</string>
     <string name="cheat_hiddentest">hidden test - Modalità di debug</string>
+    <string name="loading">Caricamento…</string>
+    <string name="leaderboard">Classifica</string>
+    <string name="leaderboard_current">Classifica (Attuale: %s)</string>
+    <string name="Settings">Impostazioni</string>
+    <string name="scoreupload_ok">Punteggio inviato per %s</string>
+    <string name="scoreupload_err">Errore %s durante l\'invio del punteggio</string>
 </resources>

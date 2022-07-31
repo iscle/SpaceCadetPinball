@@ -61,6 +61,15 @@ void SpaceCadetPinballJNI::displayText(const char* text, int type) {
     env->CallStaticVoidMethod(clazz, mid, str, type);
 }
 
+void SpaceCadetPinballJNI::postRemainingBalls(int balls) {
+    if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
+
+    if (clazz == nullptr) clazz = env->FindClass("com/fexed/spacecadetpinball/JNIEntryPoint");
+    jmethodID mid = env->GetStaticMethodID(clazz, "setRemainingBalls", "(I)V");
+
+    env->CallStaticVoidMethod(clazz, mid, balls);
+}
+
 void SpaceCadetPinballJNI::clearText(int type) {
     if (env == nullptr) g_JavaVM->GetEnv((void **) &env, JNI_VERSION_1_6);
 

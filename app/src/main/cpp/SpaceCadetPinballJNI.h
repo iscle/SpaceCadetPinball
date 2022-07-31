@@ -31,6 +31,8 @@ public:
     static void cheatsUsed();
 
     static void gameReady();
+
+    static void postRemainingBalls(int balls);
 };
 
 #endif // SPACECADETPINBALLJNI_H

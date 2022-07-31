@@ -35,6 +35,9 @@ public class MainActivity extends SDLActivity {
     private Handler plungerTimer;
     private boolean isGameReady = false;
 
+    private int ballCount = 0;
+    private int remainingBalls = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,8 +233,11 @@ public class MainActivity extends SDLActivity {
 
         @Override
         public void onBallCountUpdated(int count) {
-            String str = getString(R.string.balls, count);
-            runOnUiThread(() -> mBinding.ballstxt.setText(str));
+            ballCount = count;
+            if (!getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("remainingballs", false)) {
+                String str = getString(R.string.balls, count);
+                runOnUiThread(() -> mBinding.ballstxt.setText(str));
+            }
         }
 
         @Override
@@ -243,6 +249,15 @@ public class MainActivity extends SDLActivity {
         @Override
         public void onGameReady() {
             isGameReady = true;
+        }
+
+        @Override
+        public void onRemainingBallsRequested(int balls) {
+            remainingBalls = balls;
+            if (getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("remainingballs", false)) {
+                String str = getString(R.string.remainingballs, balls);
+                runOnUiThread(() -> mBinding.ballstxt.setText(str));
+            }
         }
     };
 
@@ -262,6 +277,14 @@ public class MainActivity extends SDLActivity {
             mBinding.tiltLeft.setVisibility(View.GONE);
             mBinding.tiltRight.setVisibility(View.GONE);
             mBinding.tiltBottom.setVisibility(View.GONE);
+        }
+
+        if (!getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("remainingballs", false)) {
+            String str = getString(R.string.balls, ballCount);
+            mBinding.ballstxt.setText(str);
+        } else {
+            String str = getString(R.string.remainingballs, remainingBalls);
+            mBinding.ballstxt.setText(str);
         }
 
         boolean customfonts = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);

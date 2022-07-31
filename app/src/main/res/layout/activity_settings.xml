@@ -201,7 +201,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <Switch
             android:id="@+id/tiltbtns"
@@ -285,6 +285,15 @@
             app:layout_constraintStart_toStartOf="@+id/inpttxtusername"
             app:layout_constraintTop_toTopOf="@+id/textView15" />
 
+        <Switch
+            android:id="@+id/remainingballs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/inpttxtusername"
+            app:layout_constraintTop_toTopOf="@+id/textView19" />
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
@@ -306,6 +315,19 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/remainingballssettings"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/volumebar"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <SeekBar
             android:id="@+id/volumebar"

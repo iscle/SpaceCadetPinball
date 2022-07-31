@@ -62,6 +62,12 @@ public class Settings extends AppCompatActivity {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("plungerPopup", b).apply();
         });
 
+        boolean remainingballs = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("remainingballs", false);
+        mBinding.remainingballs.setChecked(remainingballs);
+        mBinding.remainingballs.setOnCheckedChangeListener((compoundButton, b) -> {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putBoolean("remainingballs", b).apply();
+        });
+
         mBinding.inpttxtusername.setText(getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", "Player 1"));
         mBinding.inpttxtusername.addTextChangedListener(new TextWatcher() {
             @Override

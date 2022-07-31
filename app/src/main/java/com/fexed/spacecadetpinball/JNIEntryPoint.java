@@ -17,6 +17,10 @@ public class JNIEntryPoint {
         return StateHelper.INSTANCE.getHighScore();
     }
 
+    static void setRemainingBalls(int balls) {
+        StateHelper.INSTANCE.setRemainingBalls(balls);
+    }
+
     static void printString(String string, int type) {
         StateHelper.INSTANCE.printString(string, type);
     }

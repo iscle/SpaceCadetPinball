@@ -63,6 +63,14 @@ public enum StateHelper {
         return -1;
     }
 
+    public void setRemainingBalls(int balls) {
+        for (IStateListener listener : mStateListeners) {
+            if (listener != null) {
+                listener.onRemainingBallsRequested(balls);
+            }
+        };
+    }
+
     public void printString(String string, int type) {
         for (IStateListener listener : mStateListeners) {
             if (listener != null) {
@@ -132,5 +140,7 @@ public enum StateHelper {
         void onCheatsUsed();
 
         void onGameReady();
+
+        void onRemainingBallsRequested(int balls);
     }
 }

@@ -37,6 +37,7 @@
 #include "TPlunger.h"
 #include "TFlipper.h"
 #include "TDrain.h"
+#include "../app/src/main/cpp/SpaceCadetPinballJNI.h"
 
 int TPinballTable::score_multipliers[5] = {1, 2, 3, 5, 10};
 
@@ -316,6 +317,7 @@ void TPinballTable::port_draw()
 
 int TPinballTable::Message(int code, float value)
 {
+	SpaceCadetPinballJNI::postRemainingBalls(ExtraBalls + BallCount);
 	LPSTR rc_text;
 	switch (code)
 	{

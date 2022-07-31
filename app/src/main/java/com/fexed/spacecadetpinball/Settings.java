@@ -41,7 +41,7 @@ public class Settings extends AppCompatActivity {
         String txt = score + "";
         mBinding.highscoretxtv.setText(txt);
 
-        txt = "Version " + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")";
+        txt = BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")";
         mBinding.verstxtv.setText(txt);
 
         boolean tiltenabled = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("tiltbuttons", true);

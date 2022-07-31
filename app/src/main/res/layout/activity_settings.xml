@@ -13,23 +13,37 @@
     tools:context=".Settings">
 
         <TextView
-            android:id="@+id/verstxtv"
-            android:layout_width="0dp"
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/infos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testscorebtn" />
+
+        <TextView
+            android:id="@+id/verstxtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/highscoretxtv2"
-            app:layout_constraintStart_toStartOf="@+id/highscoretxtv2"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
+            app:layout_constraintEnd_toEndOf="@+id/tiltbtns"
+            app:layout_constraintStart_toStartOf="@+id/tiltbtns"
+            app:layout_constraintTop_toTopOf="@+id/textView17"
             tools:text="1.01" />
 
         <TextView
             android:id="@+id/highscoretxtv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_horizontal"
             android:textAlignment="center"
@@ -45,7 +59,8 @@
             android:id="@+id/highscoretxtv2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:gravity="center_horizontal"
             android:text="@string/credits"
@@ -53,14 +68,32 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/highscoretxtv4" />
+
+        <TextView
+            android:id="@+id/highscoretxtv4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/howtoplay"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/githubtxtv" />
 
         <TextView
             android:id="@+id/gplaytxtv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:autoLink="web"
             android:gravity="center_horizontal"
@@ -74,37 +107,37 @@
 
         <TextView
             android:id="@+id/githubtxtv"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:autoLink="web"
             android:gravity="center_horizontal"
             android:text="@string/goto_github"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/verstxtv" />
+            app:layout_constraintEnd_toEndOf="@+id/verstxtv"
+            app:layout_constraintStart_toStartOf="@+id/verstxtv"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <EditText
             android:id="@+id/inpttxtusername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="@string/username"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -116,7 +149,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/highscore"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -129,13 +162,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/Settings"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testscorebtn" />
+            app:layout_constraintTop_toBottomOf="@+id/gplaytxtv" />
 
         <TextView
             android:id="@+id/textView"
@@ -147,6 +180,17 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/current_ver"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <TextView
             android:id="@+id/textView4"
@@ -172,13 +216,13 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/cheat_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/gplaytxtv" />
+            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/volumebar" />
 
         <TextView
             android:id="@+id/textView7"
@@ -188,7 +232,7 @@
             android:text="@string/cheat_disclaimer"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/cheatindicatorlbl" />
 
         <TextView
@@ -199,7 +243,7 @@
             android:text="@string/cheat_notused"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <ImageView
@@ -267,6 +311,8 @@
             android:id="@+id/volumebar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="@+id/inpttxtusername"
             app:layout_constraintStart_toStartOf="@+id/inpttxtusername"

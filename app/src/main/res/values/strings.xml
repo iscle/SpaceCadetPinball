@@ -19,7 +19,7 @@
     <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">Check out my other apps!</a></u></string>
     <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Check out the latest version</a></u></string>
     <string name="cheat_title">Cheats</string>
-    <string name="cheat_disclaimer">Activate before launching your first ball</string>
+    <string name="cheat_disclaimer">Activate before launching your first ball (note: some cheats are still not working)</string>
     <string name="cheat_gmax">gmax - Enables the Gravity Well</string>
     <string name="cheat_1max">1max - Extra ball</string>
     <string name="cheat_bmax">bmax - Unlimited balls</string>
@@ -30,9 +30,12 @@
     <string name="cheat_used">Cheats used!</string>
     <string name="cheat_hiddentest">hidden test - Debug mode</string>
     <string name="loading">Loading…</string>
-    <string name="leaderboard">Leaderboard</string>
+    <string name="leaderboard">Online Leaderboard</string>
     <string name="leaderboard_current">Leaderboard (Current: %s)</string>
     <string name="Settings">Settings</string>
+    <string name="infos">Informations</string>
+    <string name="howtoplay">Tap anywhere on the screen to use the plunger or the two levers, and aim for the high score!</string>
     <string name="scoreupload_ok">Score uploaded for %s</string>
     <string name="scoreupload_err">Error %s while uploading score</string>
+    <string name="current_ver">Current version</string>
 </resources>

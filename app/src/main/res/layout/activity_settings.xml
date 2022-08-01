@@ -267,6 +267,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/highscoretxtv" />
 
+        <Button
+            android:id="@+id/resetuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reset"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/testscorebtn" />
+
         <Switch
             android:id="@+id/cstmfnts"
             android:layout_width="wrap_content"

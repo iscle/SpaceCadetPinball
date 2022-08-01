@@ -23,6 +23,7 @@ import org.libsdl.app.SDLActivity;
 import org.w3c.dom.Text;
 
 import java.security.PublicKey;
+import java.util.Random;
 
 public class Settings extends AppCompatActivity {
 
@@ -34,8 +35,12 @@ public class Settings extends AppCompatActivity {
         mBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
-        HighScoreHandler.postScore(getApplicationContext(), false, false);
-        HighScoreHandler.postScore(getApplicationContext(), false, true);
+        if (getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", null) != null) {
+            HighScoreHandler.postScore(getApplicationContext(), false, false);
+            if (!getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("userid", "0").equals("0")) {
+                HighScoreHandler.postScore(getApplicationContext(), false, true);
+            }
+        }
 
         int score = HighScoreHandler.getHighScore(getApplicationContext());
         String txt = score + "";
@@ -217,10 +222,12 @@ public class Settings extends AppCompatActivity {
             startActivity(i);
         });
 
-        /*
+
         mBinding.resetuid.setOnClickListener(v -> {
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().remove("username").apply();
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().remove("userid").apply();
+            getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putInt("highscore", new Random().nextInt(10000)).apply();
         });
-        */
+
     }
 }

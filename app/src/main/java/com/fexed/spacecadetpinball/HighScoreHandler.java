@@ -165,7 +165,7 @@ public class HighScoreHandler {
                         return objectToSend.toString().getBytes(StandardCharsets.UTF_8);
                     }
                 };
-                POSTRankingRequest.setRetryPolicy(new DefaultRetryPolicy(10000, 10, 2.0f));
+                POSTRankingRequest.setRetryPolicy(new DefaultRetryPolicy(60000, 10, 2.0f));
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(POSTRankingRequest);
             } catch (JSONException e) {

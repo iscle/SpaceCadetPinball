@@ -110,7 +110,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                 else setTitle(getString(R.string.leaderboard_current, position + ""));
             }
             mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
-            mBinding.nextpagebtn.setEnabled(true);
+            if (maxpages > 0) mBinding.nextpagebtn.setEnabled(true);
             mBinding.prevpagebtn.setEnabled(false);
             mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard.subList(0, Math.min(LeaderboardAdapter.pagesize, leaderboard.size())), false, isCheatRanking, prefs, 0));
         });

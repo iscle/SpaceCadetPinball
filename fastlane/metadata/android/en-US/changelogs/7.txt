@@ -1,0 +1,8 @@
+Version 2.0 comes with a whole new feature: the online scoreboard! Challenge your friends and climb the high score ladder to the top.
+It's a work in progress made by @Th3vanger whom I thank a lot!
+Other updates:
+
+you can now pick a "remaing balls left" message instead of the default "ball number" message
+whenever a new version is available, the app will now prompt you to download it
+the plunger popup can now be disabled
+minor improvements

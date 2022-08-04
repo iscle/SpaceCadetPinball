@@ -41,8 +41,8 @@
     <string name="scoreupload_ok">Punteggio inviato per %s</string>
     <string name="scoreupload_err">Errore %s durante l\'invio del punteggio</string>
     <string name="current_ver">Current version</string>
-    <string name="nextpage">Pag. succ.</string>
-    <string name="prevpage">Pag. prec.</string>
+    <string name="nextpage">Succ.</string>
+    <string name="prevpage">Prec.</string>
     <string name="rankerrortitle">Errore</string>
     <string name="rankerrormsg">Errore durante il caricamento della classifica.\n\n%s</string>
     <string name="rankerrorretry">Timeout del server, riprova.</string>

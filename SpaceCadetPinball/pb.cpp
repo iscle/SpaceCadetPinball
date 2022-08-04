@@ -540,11 +540,10 @@ bool pb::chk_highscore()
 {
 	int playerIndex = MainTable->PlayerCount - 1;
 	int currscore = MainTable->PlayerScores[playerIndex].ScoreStruct->Score;
+	SpaceCadetPinballJNI::addHighScore(currscore);
 	int oldscore = SpaceCadetPinballJNI::getHighScore();
-	if (currscore > oldscore) {
-		SpaceCadetPinballJNI::addHighScore(currscore);
-		return true;
-	} else return false;
+    if (currscore > oldscore) return true;
+    else return false;
 }
 
 float pb::collide(float timeNow, float timeDelta, TBall* ball)

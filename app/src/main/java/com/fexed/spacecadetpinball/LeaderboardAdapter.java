@@ -23,6 +23,8 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     private boolean isPlaceholder;
     private boolean isCheatRanking;
     private SharedPreferences prefs;
+    public static int pagesize = 250;
+    public int page;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView rankTxtV;
@@ -35,8 +37,6 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
-
             rankTxtV = view.findViewById(R.id.ranktxtv);
             nameTxtV = view.findViewById(R.id.nametxtv);
             scoreTxtV = view.findViewById(R.id.scoretxtv);
@@ -47,8 +47,9 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         }
     }
 
-    public LeaderboardAdapter(List<LeaderboardElement> leaderboard, boolean isPlaceholder, boolean isCheatRanking, SharedPreferences prefs) {
+    public LeaderboardAdapter(List<LeaderboardElement> leaderboard, boolean isPlaceholder, boolean isCheatRanking, SharedPreferences prefs, int page) {
         this.localLeaderboard = leaderboard;
+        this.page = page;
         this.isPlaceholder = isPlaceholder;
         this.isCheatRanking = isCheatRanking;
         this.prefs = prefs;
@@ -75,8 +76,8 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             viewHolder.pBar.setVisibility(View.VISIBLE);
             viewHolder.nameTxtV.setText(R.string.loading);
         } else {
-            viewHolder.rankTxtV.setText((position + 1) + ".");
-            if (position == 0) {
+            viewHolder.rankTxtV.setText(((page*pagesize) + position + 1) + ".");
+            if ((page*pagesize) + position == 0) {
                 viewHolder.rankTxtV.setVisibility(View.INVISIBLE);
                 viewHolder.star.setVisibility(View.VISIBLE);
             } else {

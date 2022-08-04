@@ -1,11 +1,14 @@
 package com.fexed.spacecadetpinball;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.fexed.spacecadetpinball.databinding.ActivityLeaderboardBinding;
@@ -18,6 +21,10 @@ import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity {
     private ActivityLeaderboardBinding mBinding;
+    private List<LeaderboardElement> cachedLeaderboard = null;
+    private int currentpage = 0;
+    private int maxpages = 0;
+    private int playerpage = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,29 @@ public class LeaderboardActivity extends AppCompatActivity {
         setContentView(view);
         mBinding.list.setLayoutManager(new LinearLayoutManager(this));
         HighScoreHandler.leaderboardActivity = this;
+
+        mBinding.prevpagebtn.setEnabled(false);
+        mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
+
+        mBinding.prevpagebtn.setOnClickListener(v -> {
+            currentpage -= 1;
+            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), (LeaderboardAdapter.pagesize*(currentpage+1))), false, false, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
+
+            if (currentpage == 0) mBinding.prevpagebtn.setEnabled(false);
+            mBinding.nextpagebtn.setEnabled(true);
+
+            mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
+        });
+
+        mBinding.nextpagebtn.setOnClickListener(v -> {
+            currentpage += 1;
+            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), Math.min((LeaderboardAdapter.pagesize*(currentpage+1)), cachedLeaderboard.size())), false, false, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
+
+            if (currentpage == maxpages) mBinding.nextpagebtn.setEnabled(false);
+            mBinding.prevpagebtn.setEnabled(true);
+
+            mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
+        });
     }
 
     @Override
@@ -35,9 +65,13 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onResume();
         HighScoreHandler.getRanking(LeaderboardActivity.this);
 
-        List<LeaderboardElement> placeholder = new ArrayList<>();
-        placeholder.add(new LeaderboardElement("Loading", "", null, 0, 0));
-        mBinding.list.setAdapter(new LeaderboardAdapter(placeholder, true, false, null));
+        if (cachedLeaderboard == null) {
+            mBinding.nextpagebtn.setEnabled(false);
+            mBinding.prevpagebtn.setEnabled(false);
+            List<LeaderboardElement> placeholder = new ArrayList<>();
+            placeholder.add(new LeaderboardElement("Loading", "", null, 0, 0));
+            mBinding.list.setAdapter(new LeaderboardAdapter(placeholder, true, false, null, 0));
+        }
     }
 
     @Override
@@ -52,6 +86,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         } else {
             Collections.sort(leaderboard, (t1, t2) -> -Integer.compare(t1.normalScore, t2.normalScore));
         }
+        this.cachedLeaderboard = leaderboard;
+        this.currentpage = 0;
+        this.maxpages = (int) Math.floor(leaderboard.size()/((float) LeaderboardAdapter.pagesize));
+        Log.d("RANKS", "size: " + leaderboard.size() + ", pages: " + maxpages);
         runOnUiThread(() -> {
             SharedPreferences prefs = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE);
             int position = -1;
@@ -66,7 +104,10 @@ public class LeaderboardActivity extends AppCompatActivity {
             if (position != -1) {
                 setTitle(getString(R.string.leaderboard_current, position + ""));
             }
-            mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard, false, false, prefs));
+            mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
+            mBinding.nextpagebtn.setEnabled(true);
+            mBinding.prevpagebtn.setEnabled(false);
+            mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard.subList(0, LeaderboardAdapter.pagesize), false, false, prefs, 0));
         });
     }
 

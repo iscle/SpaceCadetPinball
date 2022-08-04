@@ -44,4 +44,7 @@
     <string name="prevpage">Prev page</string>
     <string name="rankerrortitle">Error</string>
     <string name="rankerrormsg">An error occurred while downloading the ranking.\n\n%s</string>
+    <string name="newvers">Version %s is available on GitHub!</string>
+    <string name="newversdl">Version %s is available: tap here to download</string>
+    <string name="nonewvers">You are playing the latest version</string>
 </resources>

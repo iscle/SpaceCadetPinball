@@ -7,18 +7,31 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.Editable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.fexed.spacecadetpinball.databinding.ActivityMainBinding;
 import com.fexed.spacecadetpinball.databinding.ActivitySettingsBinding;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.libsdl.app.SDLActivity;
 import org.w3c.dom.Text;
 
@@ -229,5 +242,50 @@ public class Settings extends AppCompatActivity {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().putInt("highscore", new Random().nextInt(10000)).apply();
         });
 
+        checkLatestRelease();
+    }
+
+    public void checkLatestRelease() {
+        String URL = "https://api.github.com/repos/fexed/Pinball-on-Android/releases/latest";
+        Response.Listener<String> listener = response -> {};
+        Response.ErrorListener errorListener = response -> {};
+        StringRequest GETReleaseRequest = new StringRequest(Request.Method.GET, URL, listener, errorListener) {
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String responseJSON = "";
+                if (response != null) {
+                    try {
+                        JSONObject received = new JSONObject(new String(response.data));
+                        String tag = received.getString("tag_name");Log.d("VERS", "current: " + BuildConfig.VERSION_NAME + " - GitHub: " + tag);
+                        String downloadurl = received.getJSONArray("assets").getJSONObject(0).getString("browser_download_url");
+                        Log.d("VERS", "current: " + BuildConfig.VERSION_NAME + " - GitHub: " + tag);
+
+                        if (!tag.equals(BuildConfig.VERSION_NAME)) {
+                            runOnUiThread(() -> {
+                                SpannableString content = new SpannableString(getString(R.string.newversdl, tag));
+                                content.setSpan(new UnderlineSpan(), 0, getString(R.string.newversdl, tag).length(), 0);
+                                mBinding.githubtxtv.setText(content);
+                                mBinding.githubtxtv.setOnClickListener(v -> {
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(downloadurl));
+                                    startActivity(browserIntent);
+                                });
+                                Toast.makeText(Settings.this, getString(R.string.newvers, tag), Toast.LENGTH_LONG).show();
+                            });
+                        } else {
+                            runOnUiThread(() -> {
+                                SpannableString content = new SpannableString(getString(R.string.nonewvers));
+                                content.setSpan(new UnderlineSpan(), 0, getString(R.string.nonewvers).length(), 0);
+                                mBinding.githubtxtv.setText(content);
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return Response.success(responseJSON, HttpHeaderParser.parseCacheHeaders(response));
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(GETReleaseRequest);
     }
 }

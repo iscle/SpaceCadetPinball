@@ -13,10 +13,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.ViewHolder> {
     private List<LeaderboardElement> localLeaderboard;
@@ -87,7 +89,8 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             viewHolder.nameTxtV.setText(localLeaderboard.get(position).username);
             if (isCheatRanking) viewHolder.scoreTxtV.setText("" + localLeaderboard.get(position).cheatScore);
             else viewHolder.scoreTxtV.setText("" + localLeaderboard.get(position).normalScore);
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss", Locale.getDefault());
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH.mm", Locale.getDefault());
+            fmt.setTimeZone(TimeZone.getDefault());
             viewHolder.dateTxtV.setText(fmt.format(localLeaderboard.get(position).lastUploaded));
 
             if (localLeaderboard.get(position).uid.equals(prefs.getString("userid", "0"))) {

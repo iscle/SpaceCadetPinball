@@ -230,11 +230,17 @@ public class Settings extends AppCompatActivity {
             SDLActivity.onNativeKeyUp(KeyEvent.KEYCODE_T);
         });
 
-        mBinding.testscorebtn.setOnClickListener(v -> {
+        mBinding.rankingbtn.setOnClickListener(v -> {
+            LeaderboardActivity.isCheatRanking = false;
             Intent i = new Intent(this, LeaderboardActivity.class);
             startActivity(i);
         });
 
+        mBinding.cheatrankingbtn.setOnClickListener(v -> {
+            LeaderboardActivity.isCheatRanking = true;
+            Intent i = new Intent(this, LeaderboardActivity.class);
+            startActivity(i);
+        });
 
         mBinding.resetuid.setOnClickListener(v -> {
             getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).edit().remove("username").apply();

@@ -33,7 +33,9 @@
     <string name="cheat_hiddentest">hidden test - Debug mode</string>
     <string name="loading">Loading…</string>
     <string name="leaderboard">Online Leaderboard</string>
+    <string name="cheatleaderboard">Cheat Leaderboard</string>
     <string name="leaderboard_current">Leaderboard (Current: %s)</string>
+    <string name="cheatleaderboard_current">Cheat leaderboard (Current: %s)</string>
     <string name="Settings">Settings</string>
     <string name="infos">Informations</string>
     <string name="howtoplay">Tap anywhere on the screen to use the plunger or the two levers, and aim for the high score!</string>

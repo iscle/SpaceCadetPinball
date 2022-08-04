@@ -23,7 +23,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testscorebtn" />
+            app:layout_constraintTop_toBottomOf="@+id/rankingbtnlyt" />
 
         <TextView
             android:id="@+id/verstxtv"
@@ -258,15 +258,33 @@
             app:layout_constraintTop_toTopOf="@+id/textView6"
             app:srcCompat="@drawable/warn" />
 
-        <Button
-            android:id="@+id/testscorebtn"
+        <LinearLayout
+            android:id="@+id/rankingbtnlyt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
-            android:text="@string/leaderboard"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/highscoretxtv" />
+            app:layout_constraintTop_toBottomOf="@+id/highscoretxtv">
+
+            <Button
+                android:id="@+id/cheatrankingbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/cheatleaderboard" />
+
+            <Button
+                android:id="@+id/rankingbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/leaderboard" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/resetuid"
@@ -276,7 +294,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testscorebtn" />
+            app:layout_constraintTop_toBottomOf="@+id/rankingbtn" />
 
         <Switch
             android:id="@+id/cstmfnts"

@@ -20,6 +20,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity {
+    public static boolean isCheatRanking = false;
+
     private ActivityLeaderboardBinding mBinding;
     private List<LeaderboardElement> cachedLeaderboard = null;
     private int currentpage = 0;
@@ -29,7 +31,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.leaderboard);
+        if (isCheatRanking) setTitle(R.string.cheatleaderboard);
+        else setTitle(R.string.leaderboard);
         mBinding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
@@ -41,7 +44,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         mBinding.prevpagebtn.setOnClickListener(v -> {
             currentpage -= 1;
-            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), (LeaderboardAdapter.pagesize*(currentpage+1))), false, false, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
+            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), (LeaderboardAdapter.pagesize*(currentpage+1))), false, isCheatRanking, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
 
             if (currentpage == 0) mBinding.prevpagebtn.setEnabled(false);
             mBinding.nextpagebtn.setEnabled(true);
@@ -51,7 +54,7 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         mBinding.nextpagebtn.setOnClickListener(v -> {
             currentpage += 1;
-            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), Math.min((LeaderboardAdapter.pagesize*(currentpage+1)), cachedLeaderboard.size())), false, false, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
+            mBinding.list.setAdapter(new LeaderboardAdapter(cachedLeaderboard.subList((LeaderboardAdapter.pagesize*currentpage), Math.min((LeaderboardAdapter.pagesize*(currentpage+1)), cachedLeaderboard.size())), false, isCheatRanking, getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE), currentpage));
 
             if (currentpage == maxpages) mBinding.nextpagebtn.setEnabled(false);
             mBinding.prevpagebtn.setEnabled(true);
@@ -64,6 +67,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         HighScoreHandler.getRanking(LeaderboardActivity.this);
+        HighScoreHandler.getCurrentRank(LeaderboardActivity.this);
 
         if (cachedLeaderboard == null) {
             mBinding.nextpagebtn.setEnabled(false);
@@ -81,7 +85,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     }
 
     public void onLeaderboardReady(List<LeaderboardElement> leaderboard) {
-        if (false) {
+        if (isCheatRanking) {
             Collections.sort(leaderboard, (t1, t2) -> -Integer.compare(t1.cheatScore, t2.cheatScore));
         } else {
             Collections.sort(leaderboard, (t1, t2) -> -Integer.compare(t1.normalScore, t2.normalScore));
@@ -102,13 +106,18 @@ public class LeaderboardActivity extends AppCompatActivity {
             }
 
             if (position != -1) {
-                setTitle(getString(R.string.leaderboard_current, position + ""));
+                if (isCheatRanking) setTitle(getString(R.string.cheatleaderboard_current, position + ""));
+                else setTitle(getString(R.string.leaderboard_current, position + ""));
             }
             mBinding.currpagetxt.setText(currentpage + "/" + maxpages);
             mBinding.nextpagebtn.setEnabled(true);
             mBinding.prevpagebtn.setEnabled(false);
-            mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard.subList(0, LeaderboardAdapter.pagesize), false, false, prefs, 0));
+            mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard.subList(0, Math.min(LeaderboardAdapter.pagesize, leaderboard.size())), false, isCheatRanking, prefs, 0));
         });
+    }
+
+    public void onCurrentRankReady(LeaderboardElement player) {
+        Log.d("RANKS", player.toString());
     }
 
     public void onLeaderboardError(String error) {

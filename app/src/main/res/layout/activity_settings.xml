@@ -274,7 +274,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:text="@string/cheatleaderboard" />
+                android:text="@string/cheatleaderboard"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/rankingbtn"
@@ -294,7 +295,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rankingbtn" />
+            app:layout_constraintTop_toBottomOf="@+id/rankingbtnlyt" />
 
         <Switch
             android:id="@+id/cstmfnts"

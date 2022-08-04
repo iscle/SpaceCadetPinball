@@ -114,6 +114,9 @@ public class LeaderboardActivity extends AppCompatActivity {
     public void onLeaderboardError(String error) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rankerrortitle);
+        if (error == null) {
+            error = getString(R.string.rankerrorretry);
+        }
         builder.setMessage(getString(R.string.rankerrormsg, error));
         builder.create();
         builder.setOnDismissListener(dialogInterface -> LeaderboardActivity.this.finish());

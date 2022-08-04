@@ -13,7 +13,7 @@
     <string name="remainingballssettings">Indicatore palline rimanenti</string>
     <string name="tiltbuttons">Pulsanti tilt</string>
     <string name="username">Nome utente</string>
-    <string name="credits">Gioco originale: 3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering: k4zmu2a\nPorting Android originale: Iscle\nPorting Android attuale: fexed, th3vanger</string>
+    <string name="credits">3D Pinball Table was created for Microsoft by Maxis.\nCopyright © 1995 Maxis.\n\nReverse engineering: k4zmu2a\nPorting Android originale: Iscle\nPorting Android attuale: fexed, th3vanger</string>
     <string name="restartprompt">Tieni premuto per riavviare la partita</string>
     <string name="volume">Volume</string>
     <string name="customfonts">Font personalizzato</string>

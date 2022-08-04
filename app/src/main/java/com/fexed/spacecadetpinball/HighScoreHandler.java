@@ -109,6 +109,7 @@ public class HighScoreHandler {
         };
         Response.ErrorListener errorListener = error -> {
             Log.e("RANKS", "error: " + error + " " + Arrays.toString(error.getStackTrace()));
+            if (leaderboardActivity != null) leaderboardActivity.onLeaderboardError(error.getMessage());
         };
         StringRequest GETRankingRequest = new StringRequest(Request.Method.GET, URL, listener, errorListener);
         RequestQueue queue = Volley.newRequestQueue(context);

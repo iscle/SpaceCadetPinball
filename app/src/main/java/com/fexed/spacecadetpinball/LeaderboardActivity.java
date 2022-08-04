@@ -69,4 +69,13 @@ public class LeaderboardActivity extends AppCompatActivity {
             mBinding.list.setAdapter(new LeaderboardAdapter(leaderboard, false, false, prefs));
         });
     }
+
+    public void onLeaderboardError(String error) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.rankerrortitle);
+        builder.setMessage(getString(R.string.rankerrormsg, error));
+        builder.create();
+        builder.setOnDismissListener(dialogInterface -> LeaderboardActivity.this.finish());
+        builder.show();
+    }
 }

@@ -40,4 +40,6 @@
     <string name="scoreupload_ok">Score uploaded for %s</string>
     <string name="scoreupload_err">Error %s while uploading score</string>
     <string name="current_ver">Current version</string>
+    <string name="rankerrortitle">Error</string>
+    <string name="rankerrormsg">An error occurred while downloading the ranking.\n\n%s</string>
 </resources>

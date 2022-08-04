@@ -96,7 +96,7 @@ public class Settings extends AppCompatActivity {
             startActivity(browserIntent);
         });
         mBinding.githubtxtv.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fexed/Pinball-on-Android/releases"));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fexed/Pinball-on-Android/releases/latest"));
             startActivity(browserIntent);
         });
 

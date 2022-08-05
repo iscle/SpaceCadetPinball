@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="gametexts_idxs">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+        <item>60</item>
+        <item>61</item>
+        <item>62</item>
+        <item>63</item>
+        <item>64</item>
+        <item>65</item>
+        <item>66</item>
+        <item>67</item>
+        <item>68</item>
+        <item>69</item>
+        <item>70</item>
+        <item>71</item>
+        <item>72</item>
+        <item>73</item>
+        <item>74</item>
+        <item>75</item>
+        <item>76</item>
+        <item>77</item>
+        <item>78</item>
+        <item>79</item>
+        <item>80</item>
+        <item>81</item>
+        <item>82</item>
+        <item>83</item>
+        <item>84</item>
+        <item>85</item>
+        <item>86</item>
+        <item>87</item>
+        <item>88</item>
+        <item>89</item>
+        <item>90</item>
+        <item>91</item>
+        <item>92</item>
+        <item>93</item>
+        <item>94</item>
+        <item>95</item>
+        <item>96</item>
+        <item>97</item>
+        <item>98</item>
+        <item>99</item>
+        <item>100</item>
+        <item>101</item>
+        <item>102</item>
+        <item>103</item>
+        <item>104</item>
+        <item>105</item>
+        <item>106</item>
+        <item>107</item>
+        <item>108</item>
+        <item>109</item>
+        <item>110</item>
+        <item>111</item>
+        <item>112</item>
+        <item>113</item>
+        <item>114</item>
+        <item>115</item>
+        <item>116</item>
+        <item>117</item>
+        <item>118</item>
+        <item>119</item>
+        <item>120</item>
+        <item>121</item>
+        <item>122</item>
+        <item>123</item>
+        <item>124</item>
+        <item>125</item>
+        <item>126</item>
+        <item>127</item>
+        <item>128</item>
+        <item>129</item>
+        <item>130</item>
+        <item>131</item>
+        <item>132</item>
+        <item>133</item>
+        <item>134</item>
+        <item>135</item>
+        <item>136</item>
+        <item>137</item>
+        <item>138</item>
+        <item>139</item>
+        <item>140</item>
+        <item>141</item>
+        <item>142</item>
+        <item>143</item>
+        <item>144</item>
+        <item>145</item>
+        <item>146</item>
+        <item>147</item>
+        <item>148</item>
+        <item>149</item>
+        <item>150</item>
+        <item>151</item>
+        <item>152</item>
+        <item>153</item>
+        <item>154</item>
+        <item>155</item>
+        <item>156</item>
+        <item>158</item>
+        <item>159</item>
+        <item>160</item>
+        <item>161</item>
+        <item>162</item>
+        <item>163</item>
+        <item>164</item>
+        <item>165</item>
+        <item>166</item>
+        <item>167</item>
+        <item>168</item>
+        <item>169</item>
+        <item>170</item>
+        <item>171</item>
+        <item>172</item>
+        <item>173</item>
+        <item>174</item>
+        <item>175</item>
+        <item>176</item>
+        <item>177</item>
+        <item>178</item>
+        <item>179</item>
+        <item>180</item>
+        <item>181</item>
+        <item>182</item>
+        <item>183</item>
+        <item>184</item>
+        <item>185</item>
+        <item>186</item>
+        <item>187</item>
+        <item>188</item>
+        <item>189</item>
+        <item>2030</item>
+        <item>2031</item>
+        <item>2032</item>
+    </integer-array>
+    <string-array name="gametexts_strings">
+        <item>Получена переигровка</item>
+        <item>Шар заблокирован</item>
+        <item>Средняя стойка\n%ld</item>
+        <item>Получен бонус\n%ld</item>
+        <item>Активирован бонус</item>
+        <item>Обновление амортизаторов атаки</item>
+        <item>Обновление спусковых амортизаторов</item>
+        <item>Бонус 1 миллион очков</item>
+        <item>Доступен дополнительный шар\n%ld</item>
+        <item>Дополнительный шар</item>
+        <item>Бонус за отработанную стрельбу\n%ld</item>
+        <item>Финальная битва выиграна</item>
+        <item>Вход в гиперпространство \n%ld</item>
+        <item>Получен бонус за вход в гиперпространство</item>
+        <item>Джекпот получен \n%ld</item>
+        <item>Джекпот активирован</item>
+        <item>Мультишары</item>
+        <item>Ramp Bonus Awarded</item>
+        <item>Light Added</item>
+        <item>Ramp Bonus On</item>
+        <item>Light Reset Off</item>
+        <item>Отличный выстрел! \n%ld</item>
+        <item>Пауза\nF3 to Resume</item>
+        <item>Игра продолжается</item>
+        <item>F2 Starts New Game</item>
+        <item>Осторожней...</item>
+        <item>Игрок 1</item>
+        <item>Игрок 2</item>
+        <item>Игрок 3</item>
+        <item>Игрок 4</item>
+        <item>Демонстрация\nИгрок 1</item>
+        <item>Демонстрация\nИгрок 2</item>
+        <item>Демонстрация\nИгрок 3</item>
+        <item>Демонстрация\nИгрок 4</item>
+        <item>Игра окончена</item>
+        <item>НАКЛОН!</item>
+        <item>This program requires an 80386 or later CPU.</item>
+        <item>80386 Required</item>
+        <item>3D Pinball for Windows - Space Cadet</item>
+        <item>One or more of the player controls is set to the same key,\nfor best performance use unique keys for each control.</item>
+        <item>Удалить рекорды?</item>
+        <item>Подтвердить</item>
+        <item>WAVEMIX.INF is missing - it must be in the pinball directory!</item>
+        <item>Внимание:</item>
+        <item>Корабль перезаправлен</item>
+        <item>Гравитационная яма</item>
+        <item>Время прошло вперёд</item>
+        <item>Время повернулось вспять</item>
+        <item>Водоворот!</item>
+        <item>Норка</item>
+        <item>Ожидание запуска</item>
+        <item>Обновление ускорителя</item>
+        <item>Удержание бонуса</item>
+        <item>Медаль первого уровня</item>
+        <item>Медаль второго уровня</item>
+        <item>Медаль третьего уровня</item>
+        <item>Ускоритель 2x</item>
+        <item>Ускоритель 3x</item>
+        <item>Ускоритель 5x</item>
+        <item>Ускоритель 10x</item>
+        <item>Удары по мишеням</item>
+        <item>Обучение пусковой установке</item>
+        <item>Обучение перезапуску</item>
+        <item>Учёный</item>
+        <item>Случайная комета</item>
+        <item>Чёрная дыра</item>
+        <item>Космическая радиация</item>
+        <item>Охота за жуками</item>
+        <item>Инопланетная угроза</item>
+        <item>Спасение</item>
+        <item>Восстановление спутника</item>
+        <item>Разведка</item>
+        <item>Машина судного дня</item>
+        <item>Космическая чума</item>
+        <item>Секрет</item>
+        <item>Время течёт</item>
+        <item>Водоворот</item>
+        <item>Миссия получена\n%ld</item>
+        <item>Миссия выполнена\n%ld</item>
+        <item>Миссия: %s</item>
+        <item>Чёрная дыра\n%ld</item>
+        <item>Гравитация нормализована\n%ld</item>
+        <item>Гравитационная яма\n%ld</item>
+        <item>Повышение в звании: %s</item>
+        <item>Юнга</item>
+        <item>Мичман</item>
+        <item>Лейтенант</item>
+        <item>Капитан</item>
+        <item>Капитан-лейтенант</item>
+        <item>Капитан 1-го ранга</item>
+        <item>Коммодор</item>
+        <item>Адмирал</item>
+        <item>Адмирал флота</item>
+        <item>Открыта норка</item>
+        <item>Корабль потерпел крушение\nБонус: %ld</item>
+        <item>Переигровка</item>
+        <item>Повторный запуск</item>
+        <item>Игрок 1, запускайте снова</item>
+        <item>Игрок 2, запускайте снова</item>
+        <item>Игрок 3, запускайте снова</item>
+        <item>Игрок 4, запускайте снова</item>
+        <item>This 3D Pinball Table was created for Microsoft by Maxis.\nFor more information call (800)-336-2947\n(US and Canadian customers only).\nCopyright (c) 1995 Maxis.</item>
+        <item>Эта программа разработана MAXIS по заказу Microsoft. (c) 1995 Maxis.</item>
+        <item>About 3D Pinball</item>
+        <item>Ударьте по мишеням-миссиям, чтобы выбрать миссию</item>
+        <item>Необходимо перезаправить корабль</item>
+        <item>Пройдите через пусковую установку, чтобы начать миссию\n"%s"</item>
+        <item>Ударьте по амортизаторам атаки\nОсталось: %d раз(а)</item>
+        <item>Удары по мишеням отработаны</item>
+        <item>Миссия прервана</item>
+        <item>Пройти по пусковой установке\nОсталось: %d раз(а)</item>
+        <item>Обучение пусковой установке пройдено</item>
+        <item>Пройдите по желобам перезапуска \nОсталось: %d раз(а)</item>
+        <item>Обучение перезапуску пройдено</item>
+        <item>Ударьте по мишеням\nОсталось: %d раз(а)</item>
+        <item>Научная миссия выполнена</item>
+        <item>Внимание -- заканчивается горючее</item>
+        <item>Ударьте по всем правым мишеням-шансам</item>
+        <item>Войдите в гиперпространство</item>
+        <item>Комета уничтожена</item>
+        <item>Войдите в норку</item>
+        <item>Радиация уничтожена</item>
+        <item>Обновите спусковые амортизаторы</item>
+        <item>Войдите в чёрную дыру</item>
+        <item>Чёрная дыра уничтожена</item>
+        <item>Цели\nОсталось: %d</item>
+        <item>Зеноморфы уничтожены</item>
+        <item>Обновите ускорители</item>
+        <item>Войдите в гиперпространство</item>
+        <item>Выжившие спасены</item>
+        <item>Угроза отражена</item>
+        <item>Ударьте по топливным желобам</item>
+        <item>Ударьте по отдельному амортизатору атаки\nОсталось: %d раз(а)</item>
+        <item>Спутник отремонтирован</item>
+        <item>Пройдите по спусковому и возвращающему желобам \nОсталось: %d раз(а)</item>
+        <item>Пройдите через заправочый коридор</item>
+        <item>Разведка выполнена</item>
+        <item>Пройдите к выталкивателям\nОсталось: %d раз(а)</item>
+        <item>Машина судного дня уничтожена</item>
+        <item>Переверните флаги: осталось %d раз(а)</item>
+        <item>Измените кривизну пространства</item>
+        <item>Чума уничтожена</item>
+        <item>Войдите в жёлтую норку</item>
+        <item>Войдите в красную норку</item>
+        <item>Войдите в зелёную норку</item>
+        <item>Планы восстановлены</item>
+        <item>Ударьте по отражателям\nОсталось: %d раз(а)</item>
+        <item>Войдите в гиперпространство\nили\nпройдите на пусковую установку</item>
+        <item>Ударьте по мишеням\nОсталось: %d раз(а)</item>
+        <item>Ударьте по бортикам\nОсталось: %d раз(а)</item>
+        <item>Пройдите по желобам\nОсталось: %d раз(а)</item>
+        <item>Пройдите через заправочый коридор</item>
+        <item>Пройдите через пусковую установку</item>
+        <item>Пройдите через флаги</item>
+        <item>Войдите в норку</item>
+        <item>Из гиперпространства прямо в водоворот!</item>
+        <item>pinball.mid</item>
+        <item>1 UseBitmapFont</item>
+        <item>90 Left Flipper Key</item>
+        <item>191 Right Flipper Key</item>
+        <item>32 Plunger Key</item>
+        <item>88 Bump Left Key</item>
+        <item>190 Bump Right Key</item>
+        <item>38 Bump Bottom Key</item>
+        <item>Software\\Microsoft\\Plus!\\Pinball</item>
+        <item>SpaceCadet</item>
+        <item>1c7c22a0-9576-11ce-bf80-444553540000</item>
+        <item>PINBALL.DAT</item>
+        <item>Space Cadet</item>
+        <item>Error:</item>
+        <item>Unable to find other tables.</item>
+        <item>3D Pinball\nSpace Cadet</item>
+        <item>Promotion to %s</item>
+        <item>Demotion to %s</item>
+        <item>Обновите амортизаторы атаки</item>
+        <item>Ударьте по всем левым мишеням-шансам</item>
+        <item>РЕКОРД</item>
+        <item>pinball.chm</item>
+        <item>Not enough memory to run 3D Pinball.</item>
+        <item>Player 1\'s Score\n%ld</item>
+        <item>Player 2\'s Score\n%ld</item>
+        <item>Player 3\'s Score\n%ld</item>
+        <item>Player 4\'s Score\n%ld</item>
+        <item>High Score 1\n%ld</item>
+        <item>High Score 2\n%ld</item>
+        <item>High Score 3\n%ld</item>
+        <item>High Score 4\n%ld</item>
+        <item>High Score 5\n%ld</item>
+        <item>255 255 255   (R G B default font color)</item>
+        <item>Use Maximum Resolution (640 x 480)</item>
+        <item>Use Maximum Resolution (800 x 600)</item>
+        <item>Use Maximum Resolution (1024 x 768)</item>
+    </string-array>
+</resources>

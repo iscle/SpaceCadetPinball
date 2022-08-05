@@ -50,9 +50,6 @@ public class Settings extends AppCompatActivity {
         setContentView(view);
         if (getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("username", null) != null) {
             HighScoreHandler.postScore(getApplicationContext(), false, false);
-            if (!getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getString("userid", "0").equals("0")) {
-                HighScoreHandler.postScore(getApplicationContext(), false, true);
-            }
         }
 
         int score = HighScoreHandler.getHighScore(getApplicationContext());

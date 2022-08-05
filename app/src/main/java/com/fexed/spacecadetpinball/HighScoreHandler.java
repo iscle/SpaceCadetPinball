@@ -54,26 +54,25 @@ public class HighScoreHandler {
     static LeaderboardActivity leaderboardActivity;
 
     static boolean postHighScore(Context context, int score) {
+        boolean updated = false;
         SharedPreferences prefs = context.getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE);
         Log.d("RANKS", prefs.getBoolean("cheatsused", false) + " " + score);
 
         if (prefs.getBoolean("cheatsused", false)) {
-            postScore(context, true, false);
             int oldscore = prefs.getInt("highscore", 0);
             if (score > oldscore) {
                 prefs.edit().putInt("highscore", score).apply();
-                return true;
+                updated = true;
             }
         } else {
-            postScore(context, true, true);
             int oldscore = prefs.getInt("cheathighscore", 0);
             if (score > oldscore) {
                 prefs.edit().putInt("cheathighscore", score).apply();
-                return false;
             }
         }
+        if (prefs.getInt("highscore", 0) > 0) postScore(context, true, false);
 
-        return false;
+        return updated;
     }
 
     static int getHighScore(Context context) {

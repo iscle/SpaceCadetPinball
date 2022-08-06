@@ -290,25 +290,25 @@ public class MainActivity extends SDLActivity {
         boolean customfonts = getSharedPreferences("com.fexed.spacecadetpinball", Context.MODE_PRIVATE).getBoolean("customfonts", true);
 
         if (customfonts) {
-            mBinding.ballstxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.ballstxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.ballstxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.txtscore.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.txtscore.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.txtscore.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.infotxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.infotxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.infotxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.missiontxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.missiontxt.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.missiontxt.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.plunger.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.plunger.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             // not editing the plunger because it's a button (and using its color as default color)
-            mBinding.tiltLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltLeft.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.tiltLeft.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.tiltBottom.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltBottom.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.tiltBottom.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.tiltRight.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.tiltRight.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.tiltRight.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.left.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.left.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.left.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
-            mBinding.right.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhaus93));
+            mBinding.right.setTypeface(ResourcesCompat.getFont(getContext(), R.font.bauhauscheavy));
             mBinding.right.setTextColor(ResourcesCompat.getColor(getResources(), R.color.purple_200, getTheme()));
         } else {
             int defaultColor = mBinding.plunger.getCurrentTextColor();

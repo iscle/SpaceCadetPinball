@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Пинбол "Звёздный юнга"</string>
+    <string name="left">Левый</string>
+    <string name="right">Правый</string>
+    <string name="plunger">Рычаг запуска</string>
+    <string name="tilt">Наклон игрового поля</string>
+    <string name="reset">Новая игра</string>
+    <string name="highscore">Рекорд</string>
+    <string name="newhighscore">Новый рекорд: %d очков! Поздравляем!</string>
+    <string name="balls">Шар %d</string>
+    <string name="remainingballs">Оставшихся шаров: %d</string>
+    <string name="remainingballssettings">Индикатор количества оставшихся шаров</string>
+    <string name="tiltbuttons">Кнопки для толкания стола</string>
+    <string name="username">Игрок</string>
+    <string name="credits">Оригинальная версия игры была разработана MAXIS по заказу Microsoft.\n© 1995 Maxis.\n\nРеверс-инжиниринг: k4zmu2a\nОригинальный порт на Android: Iscle\nДанный порт на Android: fexed, th3vanger\nПеревод на русский язык: HarGabt</string>
+    <string name="restartprompt">Нажмите и удерживайте кнопку, чтобы запустить новую игру.</string>
+    <string name="volume">Громкость</string>
+    <string name="customfonts">Внутриигровой шрифт</string>
+    <string name="plungerpopup">Всплывающее уведомление о рычаге запуска</string>
+    <string name="plungerhint">Нажмите и удерживайте на экран для запуска шара.</string>
+    <string name="goto_googleplay"><u><a hred="https://play.google.com/store/apps/dev?id=6687966458279653723">У меня есть ещё и другие программы, рекомендую глянуть!</a></u></string>
+    <string name="goto_github"><u><a hred="https://github.com/fexed/Pinball-on-Android/releases">Последняя версия на GitHub</a></u></string>
+    <string name="cheat_title">Читы</string>
+    <string name="cheat_disclaimer">Активируйте их перед запуском первого шара (внимание: некоторые из них ещё не работают)</string>
+    <string name="cheat_gmax">gmax - Активируется гравитационный портал</string>
+    <string name="cheat_1max">1max - Дополнительный шар</string>
+    <string name="cheat_bmax">bmax - Бесконечное количество шаров</string>
+    <string name="cheat_rmax">rmax - Повышение звания</string>
+    <string name="cheat_omax">omax - Игра в красном цвете</string>
+    <string name="cheat_lmax">lmax - Увеличение множителя очков </string>
+    <string name="cheat_notused">Читы не использованы</string>
+    <string name="cheat_used">Использован(ы) чит(ы)!</string>
+    <string name="cheat_hiddentest">hidden test - Режим отладки</string>
+    <string name="loading">Загрузка…</string>
+    <string name="leaderboard">Онлайн-чемпионы</string>
+    <string name="cheatleaderboard">Онлайн-чемпионы-читеры</string>
+    <string name="leaderboard_current">Чемпионы (Место: %s)</string>
+    <string name="cheatleaderboard_current">Чемпионы-читеры (Место: %s)</string>
+    <string name="Settings">Настройки</string>
+    <string name="infos">Информация</string>
+    <string name="howtoplay">Нажимайте на экран, чтобы запустить шар, поднять и опустить флипперы, и добивайтесь рекордных очков!</string>
+    <string name="scoreupload_ok">Рекорд загружен за %s</string>
+    <string name="scoreupload_err">Ошибка %s при попытке загрузить рекорд</string>
+    <string name="current_ver">Установленная версия</string>
+    <string name="nextpage">След. стр</string>
+    <string name="prevpage">Пред. стр</string>
+    <string name="rankerrortitle">Ошибка</string>
+    <string name="rankerrormsg">При попытке загрузки таблицы чемпионов произошла ошибка.\n\n%s</string>
+    <string name="rankerrorretry">Тайм-аут сервера, попробуйте ещё раз.</string>
+    <string name="newvers">Новая версия %s доступна на GitHub!</string>
+    <string name="newversdl">Доступна новая версия %s - нажмите сюда для загрузки</string>
+    <string name="nonewvers">У вас установлена последняя версия</string>
+</resources>
